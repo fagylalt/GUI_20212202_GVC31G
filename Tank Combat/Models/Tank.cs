@@ -40,23 +40,41 @@ namespace Tank_Combat.Models
         #endregion
 
         #region Methods
-        public void Move(int angle)
+        public void Move(int angle, List<GameItem> barriers)
         {
+            int newCenterX = CenterX;
+            int newCenterY = CenterY;
+            bool isInBarrier = false;
+
             if (angle == 0)
             {
-                CenterY -= SpeedY;
+                newCenterY -= SpeedY;
             }
             else if (angle == 90)
             {
-                CenterX += SpeedX;
+                newCenterX += SpeedX;
             }
             else if (angle == 180)
             {
-                CenterY += SpeedY;
+                newCenterY += SpeedY;
             }
             else if (angle == 270)
             {
-                CenterX -= SpeedX;
+                newCenterX -= SpeedX;
+            }
+            Tank tankAtNewPosition = new(newCenterX, newCenterY, 0, 0);
+
+            foreach (var barrier in barriers)
+            {
+                if (tankAtNewPosition.IsCollision(barrier))
+                {
+                    isInBarrier = true;
+                }
+            }
+            if (!isInBarrier)
+            {
+                CenterX = newCenterX;
+                CenterY = newCenterY;
             }
         }
 
