@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\repas\\source\\repos\\Tank Combat\\Tank Combat\\Tank Combat.csproj": {}
+    "C:\\Users\\repas\\source\\repos\\GUI_20212202_GVC31G\\Tank Combat\\Tank Combat.csproj": {}
   },
   "projects": {
-    "C:\\Users\\repas\\source\\repos\\Tank Combat\\Tank Combat\\Tank Combat.csproj": {
+    "C:\\Users\\repas\\source\\repos\\GUI_20212202_GVC31G\\Tank Combat\\Tank Combat.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\repas\\source\\repos\\Tank Combat\\Tank Combat\\Tank Combat.csproj",
+        "projectUniqueName": "C:\\Users\\repas\\source\\repos\\GUI_20212202_GVC31G\\Tank Combat\\Tank Combat.csproj",
         "projectName": "Tank Combat",
-        "projectPath": "C:\\Users\\repas\\source\\repos\\Tank Combat\\Tank Combat\\Tank Combat.csproj",
+        "projectPath": "C:\\Users\\repas\\source\\repos\\GUI_20212202_GVC31G\\Tank Combat\\Tank Combat.csproj",
         "packagesPath": "C:\\Users\\repas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\repas\\source\\repos\\Tank Combat\\Tank Combat\\obj\\",
+        "outputPath": "C:\\Users\\repas\\source\\repos\\GUI_20212202_GVC31G\\Tank Combat\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\repas\\AppData\\Roaming\\NuGet\\NuGet.Config",
