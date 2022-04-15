@@ -1,26 +1,69 @@
 {
   "version": 3,
   "targets": {
-    "net5.0-windows7.0": {}
+    "net5.0-windows7.0": {
+      "Microsoft.Toolkit.Mvvm/7.1.2": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/Microsoft.Toolkit.Mvvm.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Microsoft.Toolkit.Mvvm.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Microsoft.Toolkit.Mvvm/7.1.2": {
+      "sha512": "tUQn6ar9oP7kmYaZ6pWabxpQaqw95Bsf+GG7prEL0y5MV5F60z76lI/Ppps9zcTqwd7e5CrdZBcdfor9WuvohA==",
+      "type": "package",
+      "path": "microsoft.toolkit.mvvm/7.1.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "License.md",
+        "ThirdPartyNotices.txt",
+        "analyzers/dotnet/cs/Microsoft.Toolkit.Mvvm.SourceGenerators.dll",
+        "analyzers/dotnet/cs/Microsoft.Toolkit.Mvvm.SourceGenerators.pdb",
+        "analyzers/dotnet/cs/Microsoft.Toolkit.Mvvm.SourceGenerators.xml",
+        "lib/net5.0/Microsoft.Toolkit.Mvvm.dll",
+        "lib/net5.0/Microsoft.Toolkit.Mvvm.pdb",
+        "lib/net5.0/Microsoft.Toolkit.Mvvm.xml",
+        "lib/netstandard2.0/Microsoft.Toolkit.Mvvm.dll",
+        "lib/netstandard2.0/Microsoft.Toolkit.Mvvm.pdb",
+        "lib/netstandard2.0/Microsoft.Toolkit.Mvvm.xml",
+        "lib/netstandard2.1/Microsoft.Toolkit.Mvvm.dll",
+        "lib/netstandard2.1/Microsoft.Toolkit.Mvvm.pdb",
+        "lib/netstandard2.1/Microsoft.Toolkit.Mvvm.xml",
+        "microsoft.toolkit.mvvm.7.1.2.nupkg.sha512",
+        "microsoft.toolkit.mvvm.nuspec"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0-windows7.0": []
+    "net5.0-windows7.0": [
+      "Microsoft.Toolkit.Mvvm >= 7.1.2"
+    ]
   },
   "packageFolders": {
-    "C:\\Users\\repas\\.nuget\\packages\\": {}
+    "C:\\Users\\Dániel\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\repas\\source\\repos\\Tank Combat\\Tank Combat\\Tank Combat.csproj",
+      "projectUniqueName": "C:\\Users\\Dániel\\Documents\\GUI_20212202_GVC31G\\Tank Combat\\Tank Combat.csproj",
       "projectName": "Tank Combat",
-      "projectPath": "C:\\Users\\repas\\source\\repos\\Tank Combat\\Tank Combat\\Tank Combat.csproj",
-      "packagesPath": "C:\\Users\\repas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\repas\\source\\repos\\Tank Combat\\Tank Combat\\obj\\",
+      "projectPath": "C:\\Users\\Dániel\\Documents\\GUI_20212202_GVC31G\\Tank Combat\\Tank Combat.csproj",
+      "packagesPath": "C:\\Users\\Dániel\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Dániel\\Documents\\GUI_20212202_GVC31G\\Tank Combat\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\repas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Dániel\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -45,6 +88,12 @@
     "frameworks": {
       "net5.0-windows7.0": {
         "targetAlias": "net5.0-windows",
+        "dependencies": {
+          "Microsoft.Toolkit.Mvvm": {
+            "target": "Package",
+            "version": "[7.1.2, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
@@ -63,7 +112,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "d8ASYVF+zxogoazYdFd7cSp6YOOuLwXIi3VcKev/i7LCIP6luc43g4DiiRdXkR0BCK6M2liHK2UDCkaqm6D1jQ==",
+  "dgSpecHash": "3pK6PeL4ngL4SQODEb2Y6r8y4EL+kZxMrmHWBqpRLcnPPXC51i9oFLPkRYrP5y3gDTuddAeVrD5h3tYj+mpsmQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\repas\\source\\repos\\Tank Combat\\Tank Combat\\Tank Combat.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Dániel\\Documents\\GUI_20212202_GVC31G\\Tank Combat\\Tank Combat.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Dániel\\.nuget\\packages\\microsoft.toolkit.mvvm\\7.1.2\\microsoft.toolkit.mvvm.7.1.2.nupkg.sha512"
+  ],
   "logs": []
 }

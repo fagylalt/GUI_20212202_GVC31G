@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Tank_Combat.Menu.ViewModels;
+using Tank_Combat.Menu.Views;
 
 namespace Tank_Combat
 {

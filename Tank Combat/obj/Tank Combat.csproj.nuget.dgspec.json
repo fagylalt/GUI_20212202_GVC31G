@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\repas\\source\\repos\\Tank Combat\\Tank Combat\\Tank Combat.csproj": {}
+    "C:\\Users\\Dániel\\Documents\\GUI_20212202_GVC31G\\Tank Combat\\Tank Combat.csproj": {}
   },
   "projects": {
-    "C:\\Users\\repas\\source\\repos\\Tank Combat\\Tank Combat\\Tank Combat.csproj": {
+    "C:\\Users\\Dániel\\Documents\\GUI_20212202_GVC31G\\Tank Combat\\Tank Combat.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\repas\\source\\repos\\Tank Combat\\Tank Combat\\Tank Combat.csproj",
+        "projectUniqueName": "C:\\Users\\Dániel\\Documents\\GUI_20212202_GVC31G\\Tank Combat\\Tank Combat.csproj",
         "projectName": "Tank Combat",
-        "projectPath": "C:\\Users\\repas\\source\\repos\\Tank Combat\\Tank Combat\\Tank Combat.csproj",
-        "packagesPath": "C:\\Users\\repas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\repas\\source\\repos\\Tank Combat\\Tank Combat\\obj\\",
+        "projectPath": "C:\\Users\\Dániel\\Documents\\GUI_20212202_GVC31G\\Tank Combat\\Tank Combat.csproj",
+        "packagesPath": "C:\\Users\\Dániel\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Dániel\\Documents\\GUI_20212202_GVC31G\\Tank Combat\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\repas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dániel\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,6 +42,12 @@
       "frameworks": {
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
+          "dependencies": {
+            "Microsoft.Toolkit.Mvvm": {
+              "target": "Package",
+              "version": "[7.1.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -57,7 +66,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }
