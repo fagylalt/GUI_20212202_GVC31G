@@ -24,5 +24,15 @@ namespace Tank_Combat
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            display.SizeSetup(new Size(gameGrid.ActualWidth, gameGrid.ActualHeight));
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            display.SizeSetup(new Size(gameGrid.ActualWidth, gameGrid.ActualHeight));
+        }
     }
 }
