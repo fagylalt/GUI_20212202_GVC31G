@@ -19,33 +19,50 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid.Background>
-            <ImageBrush ImageSource="/Menu/Textures/tank_bg.jpg" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="/Menu/Textures/play_menu_bg.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
 
-        <Label Background="Wheat" Content="Choose from 3 different type of tank " HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="30" Grid.ColumnSpan="3"/>
+        <Label Foreground="LightBlue" Content="Choose from 3 different type of tank " HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="30" Grid.ColumnSpan="3"/>
 
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,239,0,0" Grid.RowSpan="2">
-            <Label BorderThickness="1" BorderBrush="Black" Background="Wheat" Content="Health: high" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
-            <Label BorderThickness="1" BorderBrush="Black" Background="Wheat" Content="Fire rate: high" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
-            <Label BorderThickness="1" BorderBrush="Black" Background="Wheat" Content="Speed: slow" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+            <Label BorderThickness="1" BorderBrush="Black" Foreground="LightBlue" Content="Health: high" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+            <Label BorderThickness="1" BorderBrush="Black" Foreground="LightBlue" Content="Fire rate: high" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+            <Label BorderThickness="1" BorderBrush="Black" Foreground="LightBlue" Content="Speed: slow" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
         </StackPanel>
 
         <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,239,366,0" Grid.RowSpan="2">
-            <Label BorderThickness="1" BorderBrush="Black" Background="Wheat" Content="Health: low" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
-            <Label BorderThickness="1" BorderBrush="Black" Background="Wheat" Content="Fire rate: low" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
-            <Label BorderThickness="1" BorderBrush="Black" Background="Wheat" Content="Speed: fast" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+            <Label BorderThickness="1" BorderBrush="Black" Foreground="LightBlue" Content="Health: low" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+            <Label BorderThickness="1" BorderBrush="Black" Foreground="LightBlue" Content="Fire rate: low" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+            <Label BorderThickness="1" BorderBrush="Black" Foreground="LightBlue"  Content="Speed: fast" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="366,239,0,0" Grid.RowSpan="2">
-            <Label BorderThickness="1" BorderBrush="Black" Background="Wheat" Content="Health: medium" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
-            <Label BorderThickness="1" BorderBrush="Black" Background="Wheat" Content="Fire rate: medium" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
-            <Label BorderThickness="1" BorderBrush="Black" Background="Wheat" Content="Speed: medium" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+            <Label BorderThickness="1" BorderBrush="Black" Foreground="LightBlue" Content="Health: medium" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+            <Label BorderThickness="1" BorderBrush="Black" Foreground="LightBlue" Content="Fire rate: medium" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+            <Label BorderThickness="1" BorderBrush="Black" Foreground="LightBlue" Content="Speed: medium" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
         </StackPanel>
 
-        <Button Content="Light Tank" FontSize="20" Grid.Row="3" Margin="92,53,92,53" />
-        <Button Content="Heavy Tank" FontSize="20" Grid.Column="1" Grid.Row="3" Margin="92,53,92,53"/>
-        <Button Content="Armored Tank" FontSize="20" Grid.Column="2" Grid.Row="3" Margin="92,53,92,53"/>
+        
 
+        <Button Grid.Row="3" Margin="100,58,100,57">
+            <Button.Background>
+                <ImageBrush ImageSource="/Menu/Textures/light_tank_button.png" />
+            </Button.Background>
+        </Button>
+
+        <Button Grid.Column="1" Grid.Row="3" Margin="99,58,99,57">
+            <Button.Background>
+                <ImageBrush ImageSource="/Menu/Textures/heavy_tank_button.png" />
+            </Button.Background>
+        </Button>
+
+        <Button  Grid.Column="2" Grid.Row="3" Margin="109,58,93,57">
+            <Button.Background>
+                <ImageBrush ImageSource="/Menu/Textures/armored_tank_button.png" />
+            </Button.Background>
+        </Button>
+        
+        
         <Image Source="/Menu/Textures/BLUE_basic_tank.png" Grid.Column="0" Grid.Row="1" Margin="50,50,50,50"/>
         <Image Source="/Menu/Textures/BLUE_heavy_tank.png" Grid.Column="1" Grid.Row="1" Margin="50,50,50,50"/>
         <Image Source="/Menu/Textures/BLUE_light_tank.png" Grid.Column="2" Grid.Row="1" Margin="50,50,50,50"/>
