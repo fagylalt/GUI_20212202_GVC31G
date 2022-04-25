@@ -34,7 +34,7 @@ namespace Tank_Combat.Models
         {
             get
             {
-                return new RectangleGeometry(new Rect(new Point(CenterX, CenterY), new Size(50, 80)));
+                return new RectangleGeometry(new Rect(new Point(CenterX, CenterY), new Size(75, 75)));
             }
         }
         #endregion
@@ -68,7 +68,7 @@ namespace Tank_Combat.Models
             {
                 if (tankAtNewPosition.IsCollision(barrier))
                 {
-                    isInBarrier = true;
+                    isInBarrier = false;
                 }
             }
             if (!isInBarrier)

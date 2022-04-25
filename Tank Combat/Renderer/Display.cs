@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Tank_Combat.Logic;
 using Tank_Combat.Models;
 
 namespace Tank_Combat.Renderer
@@ -21,6 +22,7 @@ namespace Tank_Combat.Renderer
         {
             rand = new Random();
         }
+
         public void SizeSetup(Size _area)
         {
             this.area = _area;
@@ -45,56 +47,32 @@ namespace Tank_Combat.Renderer
             if(area.Width> 0 && area.Height > 0 && model != null)
             {
                 drawingContext.DrawRectangle(BackGroundBrush, null, new Rect(0, 0, area.Width, area.Height));
-                drawingContext.DrawRectangle(FriendlyTankBrush, null, new Rect(0,0,50,50));
-                drawingContext.DrawRectangle(EnemyBrush, null, new Rect(50,50, 50, 50));
-                drawingContext.DrawRectangle(BunkerBrush, null, new Rect(100, 100, 50, 50));
-                drawingContext.DrawRectangle(BuildingBrush, null, new Rect(150, 150, 50, 50));
-                drawingContext.DrawRectangle(WallBrush, null, new Rect(200,200, 50, 50));
+                drawingContext.DrawGeometry(FriendlyTankBrush, null, model.PlayerTank.Area);
+                drawingContext.DrawGeometry(EnemyBrush, null, model.EnemyTank.Area);
+                drawingContext.DrawGeometry(BunkerBrush, null, new Terrain(TerrainType.HeavyWall, 75, 75).Area);
+                drawingContext.DrawGeometry(BuildingBrush, null, new Terrain(TerrainType.Building,150,150).Area);
+                drawingContext.DrawGeometry(WallBrush, null, new Terrain(TerrainType.LightWall, 0, 0).Area);
+                //drawingContext.DrawGeometry(Brushes.Black, null, model.SingleBullet.Area);
             }
-            
-            
+
+
+
         }
+       
         public Brush EnemyBrush
         {
-            get
-            {
-                ImageBrush enemyImage = new ImageBrush();
-                int chosenEnemy = rand.Next(1, 4);
-                switch (chosenEnemy)
-                {
-                    case 1:
-                        enemyImage.ImageSource = new BitmapImage(new Uri(Path.Combine("Images", "RED_basic_tank.png"), UriKind.RelativeOrAbsolute));
-                        break;
-                    case 2:
-                        enemyImage.ImageSource = new BitmapImage(new Uri(Path.Combine("Images", "RED_heavy_tank.png"), UriKind.RelativeOrAbsolute));
-                        break;
-                    case 3:
-                        enemyImage.ImageSource = new BitmapImage(new Uri(Path.Combine("Images", "RED_light_tank.png"), UriKind.RelativeOrAbsolute));
-                        break;
-                }
-                return enemyImage;
+            get 
+            { 
+            return new ImageBrush( new BitmapImage(new Uri(Path.Combine("Images", "RED_basic_tank.png"), UriKind.RelativeOrAbsolute)));
             }
+           
         }
         public Brush FriendlyTankBrush
         {
             get
             {
-                ImageBrush tankImage = new ImageBrush();
-                int chosenEnemy = rand.Next(1, 4);
-                switch (chosenEnemy)
-                {
-                    case 1:
-                        tankImage.ImageSource = new BitmapImage(new Uri(Path.Combine("Images", "BLUE_basic_tank.png"), UriKind.RelativeOrAbsolute));
-                        break;
-                    case 2:
-                        tankImage.ImageSource = new BitmapImage(new Uri(Path.Combine("Images", "BLUE_heavy_tank.png"), UriKind.RelativeOrAbsolute));
-                        break;
-                    case 3:
-                        tankImage.ImageSource = new BitmapImage(new Uri(Path.Combine("Images", "BLUE_light_tank.png"), UriKind.RelativeOrAbsolute));
-                        break;
-                }
-                return tankImage;
-            }
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "BLUE_basic_tank.png"), UriKind.RelativeOrAbsolute)));
+            } 
         }
         public Brush BunkerBrush
         {

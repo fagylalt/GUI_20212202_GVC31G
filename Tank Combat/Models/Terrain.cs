@@ -40,7 +40,7 @@ namespace Tank_Combat.Models
         {
             get
             {
-                return new RectangleGeometry(new Rect(new Point(CenterX, CenterY), new Size(50, 100)));
+                return new RectangleGeometry(new Rect(new Point(CenterX, CenterY), new Size(75, 75)));
             }
         }
 

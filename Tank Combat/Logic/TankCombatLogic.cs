@@ -15,6 +15,7 @@ namespace Tank_Combat.Logic
         public MapFrame MapFrame { get; set; }
         public List<Terrain> Terrains { get; set; }
         public List<GameItem> Barriers { get; set; }
+        public Bullet SingleBullet { get; set ; }
 
         public event EventHandler Changed;
         public event EventHandler GameOver;
@@ -51,10 +52,11 @@ namespace Tank_Combat.Logic
         {
             switch (control)
             {
+                
                 case Controls.Up:
                     PlayerTank.Angle = 0;
                     PlayerTank.Move((int)PlayerTank.Angle, Barriers);
-                    break;
+                        break;
                 case Controls.Down:
                     PlayerTank.Angle = 180;
                     PlayerTank.Move((int)PlayerTank.Angle, Barriers);

@@ -28,7 +28,7 @@ namespace Tank_Combat.Models
         {
             get
             {
-                return new EllipseGeometry(new Point(CenterX, CenterY), 10, 10);
+                return new EllipseGeometry(new Point(CenterX, CenterY), 10, 20);
             }
         }
         #endregion

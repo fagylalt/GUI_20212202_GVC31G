@@ -16,5 +16,7 @@ namespace Tank_Combat.Models
         MapFrame MapFrame { get; set; }
         List<Terrain> Terrains { get; set; }
         List<GameItem> Barriers { get; set; }
+
+        Bullet SingleBullet { get; set; }
     }
 }
