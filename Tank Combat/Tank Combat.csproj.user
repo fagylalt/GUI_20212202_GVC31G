@@ -11,6 +11,9 @@
     <Compile Update="Menu\Views\MenuWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Menu\Views\PlayView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Menu\Views\CreditsView.xaml">
@@ -20,6 +23,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Menu\Views\MenuWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Menu\Views\PlayView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
