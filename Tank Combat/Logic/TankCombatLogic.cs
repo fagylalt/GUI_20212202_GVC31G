@@ -47,28 +47,28 @@ namespace Tank_Combat.Logic
         #endregion
 
         #region Logic
-        public void Control(Tank tank, Controls control)
+        public void Control(Controls control)
         {
             switch (control)
             {
                 case Controls.Up:
-                    tank.Angle = 0;
-                    tank.Move((int)tank.Angle, Barriers);
+                    PlayerTank.Angle = 0;
+                    PlayerTank.Move((int)PlayerTank.Angle, Barriers);
                     break;
                 case Controls.Down:
-                    tank.Angle = 180;
-                    tank.Move((int)tank.Angle, Barriers);
+                    PlayerTank.Angle = 180;
+                    PlayerTank.Move((int)PlayerTank.Angle, Barriers);
                     break;
                 case Controls.Left:
-                    tank.Angle = 270;
-                    tank.Move((int)tank.Angle, Barriers);
+                    PlayerTank.Angle = 270;
+                    PlayerTank.Move((int)PlayerTank.Angle, Barriers);
                     break;
                 case Controls.Right:
-                    tank.Angle = 90;
-                    tank.Move((int)tank.Angle, Barriers);
+                    PlayerTank.Angle = 90;
+                    PlayerTank.Move((int)PlayerTank.Angle, Barriers);
                     break;
                 case Controls.Space:
-                    tank.Shoot((int)tank.Angle);
+                    PlayerTank.Shoot((int)PlayerTank.Angle);
                     break;
                 default:
                     break;
