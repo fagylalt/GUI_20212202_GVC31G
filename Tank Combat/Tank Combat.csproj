@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
     <None Remove="Images\BLUE_basic_tank.png" />
     <None Remove="Images\BLUE_heavy_tank.png" />
     <None Remove="Images\BLUE_light_tank.png" />
@@ -53,7 +52,7 @@
     <Content Include="Images\RED_light_tank.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-=======
+
     <None Remove="Menu\Textures\armored_tank_button.png" />
     <None Remove="Menu\Textures\arrowkey.png" />
     <None Remove="Menu\Textures\BLUE_basic_tank.png" />
@@ -125,7 +124,6 @@
     <Resource Include="Menu\Textures\tank_logo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
->>>>>>> Menu
   </ItemGroup>
 
 </Project>
