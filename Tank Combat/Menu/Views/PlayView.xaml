@@ -10,8 +10,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="102*"/>
             <RowDefinition Height="239*"/>
-            <RowDefinition Height="132*"/>
-            <RowDefinition Height="161*"/>
+            <RowDefinition Height="148*"/>
+            <RowDefinition Height="145*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -42,27 +42,27 @@
             <Label BorderThickness="1" BorderBrush="Black" Foreground="LightBlue" Content="Speed: medium" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
         </StackPanel>
 
-        
 
-        <Button Grid.Row="3" Margin="100,58,100,57">
+
+        <Button Grid.Row="3" Margin="100,41,100,57">
             <Button.Background>
                 <ImageBrush ImageSource="/Menu/Textures/light_tank_button.png" />
             </Button.Background>
         </Button>
 
-        <Button Grid.Column="1" Grid.Row="3" Margin="99,58,99,57">
+        <Button Grid.Column="1" Grid.Row="3" Margin="100,41,100,57">
             <Button.Background>
                 <ImageBrush ImageSource="/Menu/Textures/heavy_tank_button.png" />
             </Button.Background>
         </Button>
 
-        <Button  Grid.Column="2" Grid.Row="3" Margin="109,58,93,57">
+        <Button  Grid.Column="2" Grid.Row="3" Margin="100,41,100,57">
             <Button.Background>
                 <ImageBrush ImageSource="/Menu/Textures/armored_tank_button.png" />
             </Button.Background>
         </Button>
-        
-        
+
+
         <Image Source="/Menu/Textures/BLUE_basic_tank.png" Grid.Column="0" Grid.Row="1" Margin="50,50,50,50"/>
         <Image Source="/Menu/Textures/BLUE_heavy_tank.png" Grid.Column="1" Grid.Row="1" Margin="50,50,50,50"/>
         <Image Source="/Menu/Textures/BLUE_light_tank.png" Grid.Column="2" Grid.Row="1" Margin="50,50,50,50"/>

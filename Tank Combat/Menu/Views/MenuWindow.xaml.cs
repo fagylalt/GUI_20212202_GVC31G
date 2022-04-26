@@ -25,5 +25,12 @@ namespace Tank_Combat.Menu.Views
             InitializeComponent();
             this.DataContext = new MainViewModel();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            PlayView playView = new PlayView();
+            playView.Show();
+            this.Close();
+        }
     }
 }
