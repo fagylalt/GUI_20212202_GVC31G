@@ -23,18 +23,22 @@ namespace Tank_Combat
     public partial class GameWindow : Window
     {
         TankCombatLogic logic;
+        string tanktype;
         private void Dt_Tick(object? sender, EventArgs e)
         {
             logic.TimeStep();
         }
-        public GameWindow()
+        public GameWindow(string tanktype)
         {
             InitializeComponent();
+            this.tanktype = tanktype;
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             logic = new TankCombatLogic((int)gameGrid.ActualWidth, (int)gameGrid.ActualHeight);
+            display.SetUpPlayerTankType(tanktype);
             display.SetupModel(logic);
             display.SizeSetup(new Size(gameGrid.ActualWidth, gameGrid.ActualHeight));
             DispatcherTimer dt = new DispatcherTimer();
