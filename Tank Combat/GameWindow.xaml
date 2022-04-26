@@ -6,7 +6,16 @@
         xmlns:local="clr-namespace:Tank_Combat"
         xmlns:renderer="clr-namespace:Tank_Combat.Renderer"
         mc:Ignorable="d"
-        Height="450" Width="800" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged" KeyDown="Window_KeyDown">
+        Height="450" Width="800" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged" KeyDown="Window_KeyDown" WindowState="Maximized" WindowStyle="None">
+
+    <Window.InputBindings>
+        <KeyBinding Command="ApplicationCommands.Close" Key="Esc" />
+    </Window.InputBindings>
+    
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Close" Executed="CloseCommandBinding_Executed" />
+    </Window.CommandBindings>
+    
     <Grid x:Name="gameGrid">
         <renderer:Display x:Name="display"/>
     </Grid>

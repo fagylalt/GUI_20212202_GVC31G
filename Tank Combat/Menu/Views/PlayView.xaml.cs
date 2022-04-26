@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Tank_Combat.Renderer;
 
 namespace Tank_Combat.Menu.Views
 {
@@ -22,6 +23,14 @@ namespace Tank_Combat.Menu.Views
         public PlayView()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click_Light_Tank(object sender, RoutedEventArgs e)
+        {
+            //Display display = new Display();
+            GameWindow win = new GameWindow();
+            win.Show();
+            this.Close();
         }
     }
 }

@@ -44,7 +44,7 @@
 
 
 
-        <Button Grid.Row="3" Margin="100,41,100,57">
+        <Button Click="Button_Click_Light_Tank" Grid.Row="3" Margin="100,41,100,57">
             <Button.Background>
                 <ImageBrush ImageSource="/Menu/Textures/light_tank_button.png" />
             </Button.Background>

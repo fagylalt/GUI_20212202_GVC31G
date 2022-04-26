@@ -72,5 +72,10 @@ namespace Tank_Combat
                 logic.Control(TankCombatLogic.Controls.Space);
             }
         }
+        private void CloseCommandBinding_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            if (MessageBox.Show("Close?", "Close", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                this.Close();
+        }
     }
 }
