@@ -84,7 +84,7 @@ namespace Tank_Combat.Renderer
                 drawingContext.DrawGeometry(BunkerBrush, null, new Terrain(TerrainType.HeavyWall, 75, 75).Area);
                 drawingContext.DrawGeometry(BuildingBrush, null, new Terrain(TerrainType.Building,150,150).Area);
                 drawingContext.DrawGeometry(WallBrush, null, new Terrain(TerrainType.LightWall, 0, 0).Area);
-                //drawingContext.DrawGeometry(Brushes.Black, null, model.SingleBullet.Area);
+                //drawingContext.DrawGeometry(BulletBrush, null, model.SingleBullet.Area);
             }
 
 
@@ -98,6 +98,13 @@ namespace Tank_Combat.Renderer
             return new ImageBrush( new BitmapImage(new Uri(Path.Combine("Images", enemyTankImage), UriKind.RelativeOrAbsolute)));
             }
            
+        }
+        public Brush BulletBrush
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "bullet.png"), UriKind.RelativeOrAbsolute)));
+            }
         }
         public Brush FriendlyTankBrush
         {
