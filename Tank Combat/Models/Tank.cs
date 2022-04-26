@@ -34,7 +34,11 @@ namespace Tank_Combat.Models
         {
             get
             {
-                return new RectangleGeometry(new Rect(new Point(CenterX, CenterY), new Size(75, 75)));
+                Geometry tankGeometry = new RectangleGeometry(new Rect(new Point(CenterX, CenterY), new Size(75, 75)));
+                Point p = new Point(tankGeometry.Bounds.TopLeft.X + tankGeometry.Bounds.Width / 2, tankGeometry.Bounds.TopLeft.Y + tankGeometry.Bounds.Height / 2);
+                tankGeometry.Transform = new RotateTransform(Angle, p.X, p.Y);
+                return tankGeometry;
+                //return new RectangleGeometry(new Rect(new Point(CenterX, CenterY), new Size(75, 75)));
             }
         }
         #endregion

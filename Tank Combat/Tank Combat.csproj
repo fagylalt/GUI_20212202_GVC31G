@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <None Remove="Images\BLUE_basic_tank.png" />
     <None Remove="Images\BLUE_heavy_tank.png" />
     <None Remove="Images\BLUE_light_tank.png" />
@@ -52,6 +53,79 @@
     <Content Include="Images\RED_light_tank.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+=======
+    <None Remove="Menu\Textures\armored_tank_button.png" />
+    <None Remove="Menu\Textures\arrowkey.png" />
+    <None Remove="Menu\Textures\BLUE_basic_tank.png" />
+    <None Remove="Menu\Textures\BLUE_heavy_tank.png" />
+    <None Remove="Menu\Textures\BLUE_light_tank.png" />
+    <None Remove="Menu\Textures\credits_basic.png" />
+    <None Remove="Menu\Textures\credits_green.png" />
+    <None Remove="Menu\Textures\exit_basic.png" />
+    <None Remove="Menu\Textures\exit_green.png" />
+    <None Remove="Menu\Textures\gamerules_basic.png" />
+    <None Remove="Menu\Textures\gamerules_green.png" />
+    <None Remove="Menu\Textures\heavy_tank_button.png" />
+    <None Remove="Menu\Textures\light_tank_button.png" />
+    <None Remove="Menu\Textures\play_basic.png" />
+    <None Remove="Menu\Textures\play_green.png" />
+    <None Remove="Menu\Textures\play_menu_bg.jpg" />
+    <None Remove="Menu\Textures\spacebar.jpg" />
+    <None Remove="Menu\Textures\tank_bg.jpg" />
+    <None Remove="Menu\Textures\tank_logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Menu\Textures\armored_tank_button.png" />
+    <Resource Include="Menu\Textures\arrowkey.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Menu\Textures\BLUE_basic_tank.png" />
+    <Resource Include="Menu\Textures\BLUE_heavy_tank.png" />
+    <Resource Include="Menu\Textures\BLUE_light_tank.png" />
+    <Resource Include="Menu\Textures\credits_basic.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Menu\Textures\credits_green.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Menu\Textures\exit_basic.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Menu\Textures\exit_green.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Menu\Textures\gamerules_basic.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Menu\Textures\gamerules_green.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Menu\Textures\heavy_tank_button.png" />
+    <Resource Include="Menu\Textures\light_tank_button.png" />
+    <Resource Include="Menu\Textures\play_basic.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Menu\Textures\play_green.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Menu\Textures\play_menu_bg.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Menu\Textures\spacebar.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Menu\Textures\tank_bg.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Menu\Textures\tank_logo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+>>>>>>> Menu
   </ItemGroup>
 
 </Project>
