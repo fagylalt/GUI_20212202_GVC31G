@@ -70,9 +70,9 @@ namespace Tank_Combat.Models
 
             foreach (var barrier in barriers)
             {
-                if (tankAtNewPosition.IsCollision(barrier))
+                if (tankAtNewPosition.IsCollision(barrier) && !this.Equals(barrier))
                 {
-                    isInBarrier = false;
+                    isInBarrier = true;
                 }
             }
             if (!isInBarrier)
