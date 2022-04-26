@@ -17,10 +17,27 @@ namespace Tank_Combat.Renderer
         Size area;
         Random rand;
         IGameModel model;
+        string playerTankImage;
+        string enemyTankImage;
 
         public Display()
         {
             rand = new Random();
+            enemyTankImage = decideEnemyTankType();
+        }
+        private string decideEnemyTankType()
+        {
+            int dobottszam = rand.Next(1, 3);
+            switch (dobottszam)
+            {
+                case 1:
+                    return "RED_heavy_tank.png";
+                case 2:
+                    return "RED_basic_tank.png";
+                case 3:
+                    return "RED_light_tank.png";
+            }
+            return "-1";
         }
 
         public void SizeSetup(Size _area)
@@ -32,6 +49,21 @@ namespace Tank_Combat.Renderer
         {
             this.model = _model;
             this.model.Changed += (sender, EventArgs) => this.InvalidateVisual();
+        }
+        public void SetUpPlayerTankType(string tanktype)
+        {
+            if(tanktype == "heavy")
+            {
+                playerTankImage = "BLUE_heavy_tank.png";
+            }
+            else if(tanktype == "basic")
+            {
+                playerTankImage = "BLUE_basic_tank.png";
+            }
+            else if(tanktype == "light")
+            {
+                playerTankImage = "BLUE_light_tank.png";
+            }
         }
         public Brush BackGroundBrush
         {
@@ -63,7 +95,7 @@ namespace Tank_Combat.Renderer
         {
             get 
             { 
-            return new ImageBrush( new BitmapImage(new Uri(Path.Combine("Images", "RED_basic_tank.png"), UriKind.RelativeOrAbsolute)));
+            return new ImageBrush( new BitmapImage(new Uri(Path.Combine("Images", enemyTankImage), UriKind.RelativeOrAbsolute)));
             }
            
         }
@@ -71,7 +103,7 @@ namespace Tank_Combat.Renderer
         {
             get
             {
-                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "BLUE_basic_tank.png"), UriKind.RelativeOrAbsolute)));
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", playerTankImage), UriKind.RelativeOrAbsolute)));
             } 
         }
         public Brush BunkerBrush
