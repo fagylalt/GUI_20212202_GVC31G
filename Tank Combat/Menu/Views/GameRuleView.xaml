@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Tank_Combat.Menu.Views"
              mc:Ignorable="d" 
-             Height="453" Width="502">
-    <Grid Margin="-32,0,0,0">
+             Height="453" Width="550">
+    <Grid Margin="0,0,0,0">
         <Label Content="Game Rules" Margin="0,56,0,340" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
         <Label Content="The plan is simple, you have to eliminate the enemy tank." Margin="0,116,0,304" FontSize="19" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold"/>
         <Label Content="Controls" Margin="0,149,0,249" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
@@ -23,7 +23,7 @@
         </Rectangle>
 
         <Label Content="Move the tank"  FontSize="20" HorizontalContentAlignment="Center" Margin="38,319,300,93"  Foreground="White" FontWeight="Bold"/>
-        <Label Content="Shoot" FontSize="20" HorizontalContentAlignment="Center" Margin="322,319,90,95" Foreground="White" FontWeight="Bold"/>
+        <Label Content="Shoot" FontSize="20" HorizontalContentAlignment="Center" Margin="322,319,90,95" Foreground="white" FontWeight="Bold"/>
 
     </Grid>
 </UserControl>

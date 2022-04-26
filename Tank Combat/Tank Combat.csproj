@@ -19,6 +19,9 @@
     <None Remove="Images\RED_basic_tank.png" />
     <None Remove="Images\RED_heavy_tank.png" />
     <None Remove="Images\RED_light_tank.png" />
+    <None Remove="Menu\Textures\armored_tank_button_green.png" />
+    <None Remove="Menu\Textures\heavy_tank_button_green.png" />
+    <None Remove="Menu\Textures\light_tank_button_green.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -80,6 +83,7 @@
 
   <ItemGroup>
     <Resource Include="Menu\Textures\armored_tank_button.png" />
+    <Resource Include="Menu\Textures\armored_tank_button_green.png" />
     <Resource Include="Menu\Textures\arrowkey.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -105,7 +109,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Menu\Textures\heavy_tank_button.png" />
+    <Resource Include="Menu\Textures\heavy_tank_button_green.png" />
     <Resource Include="Menu\Textures\light_tank_button.png" />
+    <Resource Include="Menu\Textures\light_tank_button_green.png" />
     <Resource Include="Menu\Textures\play_basic.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
