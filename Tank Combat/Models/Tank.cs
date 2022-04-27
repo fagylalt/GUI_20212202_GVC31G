@@ -38,9 +38,11 @@ namespace Tank_Combat.Models
         {
             get
             {
-                Geometry tankGeometry = new RectangleGeometry(new Rect(new Point(CenterX, CenterY), new Size(75, 75)));
+                double xSize = 100;
+                double ySize = 75;
+                Geometry tankGeometry = new RectangleGeometry(new Rect(new Point(CenterX-xSize/2, CenterY-ySize/2), new Size(100, 75)));
                 Point p = new Point(tankGeometry.Bounds.TopLeft.X + tankGeometry.Bounds.Width / 2, tankGeometry.Bounds.TopLeft.Y + tankGeometry.Bounds.Height / 2);
-                tankGeometry.Transform = new RotateTransform(Angle, p.X, p.Y);
+                //tankGeometry.Transform = new RotateTransform(Angle, p.X, p.Y);
                 return tankGeometry;
                 //return new RectangleGeometry(new Rect(new Point(CenterX, CenterY), new Size(75, 75)));
             }
@@ -94,19 +96,19 @@ namespace Tank_Combat.Models
                 double dy = 0;
                 if (angle == 0)
                 {
-                    dy -= 10;
+                    dy -= 30;
                 }
                 else if (angle == 90)
                 {
-                    dx += 10;
+                    dx += 30;
                 }
                 else if (angle == 180)
                 {
-                    dy += 10;
+                    dy += 30;
                 }
                 else if (angle == 270)
                 {
-                    dx -= 10;
+                    dx -= 30;
                 }
 
                 Bullets.Add(new Bullet(this.CenterX, this.CenterY, (int)dx, (int)dy));
