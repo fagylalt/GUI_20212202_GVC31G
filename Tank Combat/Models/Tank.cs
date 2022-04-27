@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace Tank_Combat.Models
         public double Angle { get; set; }
         public int Hp { get; set; }
         public List<Bullet> Bullets { get; set; }
+        public Stopwatch time { get; set; }
 
         public Tank(int centerX, int centerY, int speedX, int speedY, double angle = 0)
         {
@@ -28,6 +30,8 @@ namespace Tank_Combat.Models
             Angle = angle;
             Hp = 3;
             Bullets = new List<Bullet>();
+            time = new Stopwatch();
+            time.Start();
         }
 
         public override Geometry Area
@@ -84,26 +88,31 @@ namespace Tank_Combat.Models
 
         public void Shoot(int angle)
         {
-            double dx = 0;
-            double dy = 0;
-            if (angle == 0)
+            if (time.ElapsedMilliseconds>3000)
             {
-                dy -= 10;
-            }
-            else if (angle == 90)
-            {
-                dx += 10;
-            }
-            else if (angle == 180)
-            {
-                dy += 10;
-            }
-            else if (angle == 270)
-            {
-                dx -= 10;
-            }
+                double dx = 0;
+                double dy = 0;
+                if (angle == 0)
+                {
+                    dy -= 10;
+                }
+                else if (angle == 90)
+                {
+                    dx += 10;
+                }
+                else if (angle == 180)
+                {
+                    dy += 10;
+                }
+                else if (angle == 270)
+                {
+                    dx -= 10;
+                }
 
-            Bullets.Add(new Bullet(this.CenterX, this.CenterY, (int)dx, (int)dy));
+                Bullets.Add(new Bullet(this.CenterX, this.CenterY, (int)dx, (int)dy));
+                time.Restart();
+            }
+            ;
         }
 
         public void GotHit()

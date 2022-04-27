@@ -85,6 +85,14 @@ namespace Tank_Combat.Renderer
                 drawingContext.DrawGeometry(BuildingBrush, null, new Terrain(TerrainType.Building,150,150).Area);
                 drawingContext.DrawGeometry(WallBrush, null, new Terrain(TerrainType.LightWall, 0, 0).Area);
                 //drawingContext.DrawGeometry(BulletBrush, null, model.SingleBullet.Area);
+
+                if (model.PlayerTank.Bullets.Count()>0)
+                {
+                    foreach (var bullet in model.PlayerTank.Bullets)
+                    {
+                        drawingContext.DrawGeometry(Brushes.Black, null, bullet.Area);
+                    }
+                }
             }
 
 
