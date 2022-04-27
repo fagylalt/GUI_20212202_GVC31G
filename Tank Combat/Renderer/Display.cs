@@ -49,6 +49,13 @@ namespace Tank_Combat.Renderer
         {
             this.model = _model;
             this.model.Changed += (sender, EventArgs) => this.InvalidateVisual();
+            this.model.Terrains.Add(new Terrain(TerrainType.HeavyWall, 75, 75));
+            this.model.Terrains.Add(new Terrain(TerrainType.Building, 150, 150));
+            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, 0, 0));
+            foreach (var terrain in model.Terrains)
+            {
+                model.Barriers.Add(terrain);
+            }
         }
         public void SetUpPlayerTankType(string tanktype)
         {
@@ -81,9 +88,26 @@ namespace Tank_Combat.Renderer
                 drawingContext.DrawRectangle(BackGroundBrush, null, new Rect(0, 0, area.Width, area.Height));
                 drawingContext.DrawGeometry(FriendlyTankBrush, null, model.PlayerTank.Area);
                 drawingContext.DrawGeometry(EnemyBrush, null, model.EnemyTank.Area);
-                drawingContext.DrawGeometry(BunkerBrush, null, new Terrain(TerrainType.HeavyWall, 75, 75).Area);
-                drawingContext.DrawGeometry(BuildingBrush, null, new Terrain(TerrainType.Building,150,150).Area);
-                drawingContext.DrawGeometry(WallBrush, null, new Terrain(TerrainType.LightWall, 0, 0).Area);
+
+                foreach (var terrain in model.Terrains)
+                {
+                    if (terrain.Type==TerrainType.HeavyWall)
+                    {
+                        drawingContext.DrawGeometry(BunkerBrush, null, terrain.Area);
+                    }
+                    else if (terrain.Type==TerrainType.Building)
+                    {
+                        drawingContext.DrawGeometry(BuildingBrush, null, terrain.Area);
+                    }
+                    else if (terrain.Type==TerrainType.LightWall)
+                    {
+                        drawingContext.DrawGeometry(WallBrush, null, terrain.Area);
+                    }
+                    
+                }
+                //drawingContext.DrawGeometry(BunkerBrush, null, new Terrain(TerrainType.HeavyWall, 75, 75).Area);
+                //drawingContext.DrawGeometry(BuildingBrush, null, new Terrain(TerrainType.Building,150,150).Area);
+                //drawingContext.DrawGeometry(WallBrush, null, new Terrain(TerrainType.LightWall, 0, 0).Area);
                 //drawingContext.DrawGeometry(BulletBrush, null, model.SingleBullet.Area);
 
                 if (model.PlayerTank.Bullets.Count()>0)

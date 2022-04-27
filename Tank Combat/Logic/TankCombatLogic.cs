@@ -46,9 +46,9 @@ namespace Tank_Combat.Logic
             Barriers.Add(PlayerTank);
             Barriers.Add(EnemyTank);
             Barriers.Add(MapFrame);
-            foreach (var item in Terrains)
+            foreach (var terrain in Terrains)
             {
-                Barriers.Add(item);
+                Barriers.Add(terrain);
             }
         }
         #endregion
