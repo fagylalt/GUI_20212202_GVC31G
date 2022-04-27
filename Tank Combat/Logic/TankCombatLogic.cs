@@ -16,7 +16,7 @@ namespace Tank_Combat.Logic
         public MapFrame MapFrame { get; set; }
         public List<Terrain> Terrains { get; set; }
         public List<GameItem> Barriers { get; set; }
-        public Bullet SingleBullet { get; set ; }
+        public Bullet SingleBullet { get; set; }
 
         public event EventHandler Changed;
         public event EventHandler GameOver;
@@ -25,6 +25,14 @@ namespace Tank_Combat.Logic
         public bool isDownKeyDown = false;
         public bool isLeftKeyDown = false;
         public bool isRightKeyDown = false;
+
+        #region Keys
+        List<Key> keysCurrentlyDown;
+        public Key[] movementKeys = { Key.Up, Key.Down, Key.Right, Key.Left };
+        //private KeyStates[] oldStates = new KeyStates[mov];
+        private List<KeyStates> oldStates;
+        private Key movementKey;
+        #endregion
 
         public enum Controls
         {
@@ -50,6 +58,12 @@ namespace Tank_Combat.Logic
             {
                 Barriers.Add(terrain);
             }
+            oldStates = new List<KeyStates>();
+            foreach (var _movementKey in movementKeys)
+            {
+                oldStates.Add(Keyboard.GetKeyStates(_movementKey));
+            }
+            keysCurrentlyDown = new();
         }
         #endregion
 
@@ -104,21 +118,75 @@ namespace Tank_Combat.Logic
             Changed?.Invoke(this, null);
         }
 
+        public void GetLastKeyPressed()
+        {
+            foreach (var key in movementKeys)
+            {
+                KeyStates currentStatus = Keyboard.GetKeyStates(key);
+                if (currentStatus.HasFlag(KeyStates.Down) && !keysCurrentlyDown.Contains(key))
+                {
+                    keysCurrentlyDown.Add(key);
+                }
+                if (!currentStatus.HasFlag(KeyStates.Down) && keysCurrentlyDown.Contains(key))
+                {
+                    keysCurrentlyDown.Remove(key);
+                }
+            }
+
+            if (keysCurrentlyDown.Count > 0)
+            {
+                movementKey = keysCurrentlyDown.Last();
+            }
+            else
+            {
+                movementKey = Key.None;
+            }
+
+            //bool isAnyKeyPressed = false;
+            ////bool isAnyKeyReleased = false;
+
+            //for (int i = 0; i < movementKeys.Length; i++)
+            //{
+            //    KeyStates newState = Keyboard.GetKeyStates(movementKeys[i]);
+
+            //    if (!newState.HasFlag(KeyStates.Down) && oldStates[i].HasFlag(KeyStates.Down))
+            //    {
+            //        movementKey = Key.None;
+            //        //isAnyKeyReleased = true;
+            //    }
+            //    if (newState.HasFlag(KeyStates.Down) && oldStates[i].HasFlag(KeyStates.Down))
+            //    {
+            //        movementKey = movementKeys[i];
+            //    }
+            //    //if (newState == KeyStates.Down)
+            //    //{
+            //    //    isAnyKeyPressed = true;
+            //    //}
+
+            //    oldStates[i] = newState;
+            //}
+            ////if (!isAnyKeyPressed)
+            ////{
+            ////    movementKey = Key.None;
+            ////}
+        }
+
         public void TimeStep()
         {
-            if (Keyboard.IsKeyDown(Key.Right))
+            GetLastKeyPressed();
+            if (movementKey == Key.Right)
             {
                 Control(Controls.Right);
             }
-            if (Keyboard.IsKeyDown(Key.Left))
+            else if (movementKey == Key.Left)
             {
                 Control(Controls.Left);
             }
-            if (Keyboard.IsKeyDown(Key.Up))
+            else if (movementKey == Key.Up)
             {
                 Control(Controls.Up);
             }
-            if (Keyboard.IsKeyDown(Key.Down))
+            else if (movementKey == Key.Down)
             {
                 Control(Controls.Down);
             }
@@ -128,7 +196,7 @@ namespace Tank_Combat.Logic
             }
 
             #region PlayerTank bullets collisions
-            if (PlayerTank.Bullets.Count>0)
+            if (PlayerTank.Bullets.Count > 0)
             {
                 foreach (var bullet in PlayerTank.Bullets.ToList())
                 {
