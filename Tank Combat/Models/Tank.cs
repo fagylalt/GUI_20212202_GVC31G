@@ -41,7 +41,7 @@ namespace Tank_Combat.Models
                 double xSize = 100;
                 double ySize = 75;
                 Geometry tankGeometry = new RectangleGeometry(new Rect(new Point(CenterX-xSize/2, CenterY-ySize/2), new Size(100, 75)));
-                Point p = new Point(tankGeometry.Bounds.TopLeft.X + tankGeometry.Bounds.Width / 2, tankGeometry.Bounds.TopLeft.Y + tankGeometry.Bounds.Height / 2);
+                //Point p = new Point(tankGeometry.Bounds.TopLeft.X + tankGeometry.Bounds.Width / 2, tankGeometry.Bounds.TopLeft.Y + tankGeometry.Bounds.Height / 2);
                 //tankGeometry.Transform = new RotateTransform(Angle, p.X, p.Y);
                 return tankGeometry;
                 //return new RectangleGeometry(new Rect(new Point(CenterX, CenterY), new Size(75, 75)));
@@ -90,7 +90,7 @@ namespace Tank_Combat.Models
 
         public void Shoot(int angle)
         {
-            if (time.ElapsedMilliseconds>3000)
+            if (time.ElapsedMilliseconds>500)
             {
                 double dx = 0;
                 double dy = 0;

@@ -215,7 +215,7 @@ namespace Tank_Combat.Logic
                     {
                         PlayerTank.Bullets.Remove(bullet);
                     }
-                    foreach (var terrain in Terrains)
+                    foreach (var terrain in Terrains.ToList())
                     {
                         if (bullet.IsCollision(terrain))
                         {

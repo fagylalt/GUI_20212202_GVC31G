@@ -119,7 +119,9 @@ namespace Tank_Combat.Renderer
                 {
                     foreach (var bullet in model.PlayerTank.Bullets)
                     {
-                        drawingContext.DrawGeometry(Brushes.Black, null, bullet.Area);
+                        drawingContext.PushTransform(new RotateTransform(model.PlayerTank.Angle, bullet.CenterX, bullet.CenterY));
+                        drawingContext.DrawGeometry(BulletBrush, null, bullet.Area);
+                        drawingContext.Pop();
                     }
                 }
             }
@@ -140,7 +142,7 @@ namespace Tank_Combat.Renderer
         {
             get
             {
-                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "bullet.png"), UriKind.RelativeOrAbsolute)));
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "shell.png"), UriKind.RelativeOrAbsolute)));
             }
         }
         public Brush FriendlyTankBrush
