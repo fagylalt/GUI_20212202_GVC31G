@@ -119,7 +119,7 @@ namespace Tank_Combat.Renderer
                 {
                     foreach (var bullet in model.PlayerTank.Bullets)
                     {
-                        drawingContext.PushTransform(new RotateTransform(model.PlayerTank.Angle, bullet.CenterX, bullet.CenterY));
+                        drawingContext.PushTransform(new RotateTransform(bullet.Angle, bullet.CenterX, bullet.CenterY));
                         drawingContext.DrawGeometry(BulletBrush, null, bullet.Area);
                         drawingContext.Pop();
                     }

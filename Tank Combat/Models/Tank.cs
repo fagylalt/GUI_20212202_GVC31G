@@ -111,7 +111,7 @@ namespace Tank_Combat.Models
                     dx -= 30;
                 }
 
-                Bullets.Add(new Bullet(this.CenterX, this.CenterY, (int)dx, (int)dy));
+                Bullets.Add(new Bullet(this.CenterX, this.CenterY, (int)dx, (int)dy, angle));
                 time.Restart();
             }
             ;

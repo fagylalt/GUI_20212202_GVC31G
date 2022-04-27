@@ -15,13 +15,15 @@ namespace Tank_Combat.Models
         public int CenterY { get; set; }
         public int SpeedX { get; set; }
         public int SpeedY { get; set; }
+        public int Angle { get; set; }
 
-        public Bullet(int centerX, int centerY, int speedX, int speedY)
+        public Bullet(int centerX, int centerY, int speedX, int speedY, int angle)
         {
             CenterX = centerX;
             CenterY = centerY;
             SpeedX = speedX;
             SpeedY = speedY;
+            Angle = angle;
         }
 
         public override Geometry Area
