@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using Tank_Combat.Logic;
+using Tank_Combat.Models;
 
 namespace Tank_Combat
 {
@@ -23,23 +24,29 @@ namespace Tank_Combat
     public partial class GameWindow : Window
     {
         TankCombatLogic logic;
-        string tanktype;
+        TankType playerTankType;
+        TankType enemyTankType;
         private void Dt_Tick(object? sender, EventArgs e)
         {
             logic.TimeStep();
             display.InvalidateVisual();
         }
-        public GameWindow(string tanktype)
+        public GameWindow(TankType playerTankType)
         {
             InitializeComponent();
-            this.tanktype = tanktype;
-            
+
+            this.playerTankType = playerTankType;
+
+            Array values = Enum.GetValues(typeof(TankType));
+            Random random = new Random();
+            enemyTankType = (TankType)values.GetValue(random.Next(values.Length))!;
+            ;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            logic = new TankCombatLogic((int)gameGrid.ActualWidth, (int)gameGrid.ActualHeight);
-            display.SetUpPlayerTankType(tanktype);
+            logic = new TankCombatLogic((int)gameGrid.ActualWidth, (int)gameGrid.ActualHeight, playerTankType, enemyTankType);
+            display.SetUpTankImages(playerTankType, enemyTankType);
             display.SetupModel(logic);
             display.SizeSetup(new Size(gameGrid.ActualWidth, gameGrid.ActualHeight));
             DispatcherTimer dt = new DispatcherTimer();

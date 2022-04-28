@@ -9,9 +9,15 @@ using System.Windows.Media;
 
 namespace Tank_Combat.Models
 {
+    public enum TankType
+    {
+        HeavyTank, LightTank, ArmoderTank
+    }
+
     internal class Tank : GameItem
     {
         #region Setup
+        public TankType Type { get; set; }
         public int CenterX { get; set; }
         public int CenterY { get; set; }
         public int SpeedX { get; set; }
@@ -21,8 +27,9 @@ namespace Tank_Combat.Models
         public List<Bullet> Bullets { get; set; }
         public Stopwatch time { get; set; }
 
-        public Tank(int centerX, int centerY, int speedX, int speedY, double angle = 0)
+        public Tank(TankType type, int centerX, int centerY, int speedX, int speedY, double angle = 0)
         {
+            Type = type;
             CenterX = centerX;
             CenterY = centerY;
             SpeedX = speedX;
@@ -72,7 +79,7 @@ namespace Tank_Combat.Models
             {
                 newCenterX -= SpeedX;
             }
-            Tank tankAtNewPosition = new(newCenterX, newCenterY, 0, 0);
+            Tank tankAtNewPosition = new(Type, newCenterX, newCenterY, 0, 0);
 
             foreach (var barrier in barriers)
             {

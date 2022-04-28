@@ -23,21 +23,6 @@ namespace Tank_Combat.Renderer
         public Display()
         {
             rand = new Random();
-            enemyTankImage = decideEnemyTankType();
-        }
-        private string decideEnemyTankType()
-        {
-            int dobottszam = rand.Next(1, 3);
-            switch (dobottszam)
-            {
-                case 1:
-                    return "RED_heavy_tank.png";
-                case 2:
-                    return "RED_basic_tank.png";
-                case 3:
-                    return "RED_light_tank.png";
-            }
-            return "-1";
         }
 
         public void SizeSetup(Size _area)
@@ -57,19 +42,32 @@ namespace Tank_Combat.Renderer
                 model.Barriers.Add(terrain);
             }
         }
-        public void SetUpPlayerTankType(string tanktype)
+        public void SetUpTankImages(TankType playerTankType, TankType enemyTankType)
         {
-            if(tanktype == "heavy")
+            if(playerTankType == TankType.HeavyTank)
             {
                 playerTankImage = "BLUE_heavy_tank.png";
             }
-            else if(tanktype == "basic")
+            else if(playerTankType == TankType.ArmoderTank)
             {
                 playerTankImage = "BLUE_basic_tank.png";
             }
-            else if(tanktype == "light")
+            else if(playerTankType == TankType.LightTank)
             {
                 playerTankImage = "BLUE_light_tank.png";
+            }
+
+            if (enemyTankType == TankType.HeavyTank)
+            {
+                enemyTankImage = "RED_heavy_tank.png";
+            }
+            else if (enemyTankType == TankType.ArmoderTank)
+            {
+                enemyTankImage = "RED_basic_tank.png";
+            }
+            else if (enemyTankType == TankType.LightTank)
+            {
+                enemyTankImage = "RED_light_tank.png";
             }
         }
         public Brush BackGroundBrush

@@ -17,6 +17,8 @@ namespace Tank_Combat.Logic
         public List<Terrain> Terrains { get; set; }
         public List<GameItem> Barriers { get; set; }
         public Bullet SingleBullet { get; set; }
+        public TankType PlayerTankType { get; set; }
+        public TankType EnemyTankType { get; set; }
 
         public event EventHandler Changed;
         public event EventHandler GameOver;
@@ -44,11 +46,11 @@ namespace Tank_Combat.Logic
             //Resizing all map elements, when window size changed...
         }
 
-        public TankCombatLogic(int screenWidth, int screenHeight)
+        public TankCombatLogic(int screenWidth, int screenHeight, TankType playerTankType, TankType enemyTankType)
         {
             MapFrame = new MapFrame(screenWidth, screenHeight);
-            PlayerTank = new Tank(screenWidth / 5, screenHeight / 2, 10, 10);
-            EnemyTank = new Tank(screenWidth * 4 / 5, screenHeight / 2, 10, 10);
+            PlayerTank = new Tank(playerTankType, screenWidth / 5, screenHeight / 2, 10, 10);
+            EnemyTank = new Tank(enemyTankType, screenWidth * 4 / 5, screenHeight / 2, 10, 10);
             Terrains = new List<Terrain>();
             Barriers = new List<GameItem>();
             Barriers.Add(PlayerTank);

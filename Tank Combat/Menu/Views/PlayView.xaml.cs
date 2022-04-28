@@ -28,21 +28,21 @@ namespace Tank_Combat.Menu.Views
         private void Button_Click_Light_Tank(object sender, RoutedEventArgs e)
         {
             //Display display = new Display();
-            GameWindow win = new GameWindow("light");
+            GameWindow win = new GameWindow(Models.TankType.LightTank);
             win.Show();
             this.Close();
         }
 
         private void Heavy_Button_Click(object sender, RoutedEventArgs e)
         {
-            GameWindow win = new GameWindow("heavy");
+            GameWindow win = new GameWindow(Models.TankType.HeavyTank);
             win.Show();
             this.Close();
         }
 
         private void Medium_Button_Click(object sender, RoutedEventArgs e)
         {
-            GameWindow win = new GameWindow("basic");
+            GameWindow win = new GameWindow(Models.TankType.ArmoderTank);
             win.Show();
             this.Close();
 
