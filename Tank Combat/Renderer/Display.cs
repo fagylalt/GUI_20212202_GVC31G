@@ -133,7 +133,7 @@ namespace Tank_Combat.Renderer
         {
             get
             {
-                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "shell.png"), UriKind.RelativeOrAbsolute)));
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "Shell.png"), UriKind.RelativeOrAbsolute)));
             }
         }
         public Brush FriendlyTankBrush
