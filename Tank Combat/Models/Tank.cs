@@ -26,15 +26,17 @@ namespace Tank_Combat.Models
         public int Hp { get; set; }
         public int ReloadTime { get; set; }
         public int Damage { get; set; }
+        public int ScreenWidth { get; set; }
         public List<Bullet> Bullets { get; set; }
         public Stopwatch Time { get; set; }
 
-        public Tank(TankType type, int centerX, int centerY, double angle = 0)
+        public Tank(TankType type, int screenWidth, int centerX, int centerY, double angle = 0)
         {
             Type = type;
             CenterX = centerX;
             CenterY = centerY;
             Angle = angle;
+            ScreenWidth = screenWidth;
             SetUpBasicTankProperties();
             Bullets = new List<Bullet>();
             Time = new Stopwatch();
@@ -73,9 +75,9 @@ namespace Tank_Combat.Models
         {
             get
             {
-                double xSize = 100;
-                double ySize = 75;
-                Geometry tankGeometry = new RectangleGeometry(new Rect(new Point(CenterX-xSize/2, CenterY-ySize/2), new Size(100, 75)));
+                double xSize = ScreenWidth/20;
+                double ySize = xSize*0.75;
+                Geometry tankGeometry = new RectangleGeometry(new Rect(new Point(CenterX-xSize/2, CenterY-ySize/2), new Size(xSize, ySize)));
                 //Point p = new Point(tankGeometry.Bounds.TopLeft.X + tankGeometry.Bounds.Width / 2, tankGeometry.Bounds.TopLeft.Y + tankGeometry.Bounds.Height / 2);
                 //tankGeometry.Transform = new RotateTransform(Angle, p.X, p.Y);
                 return tankGeometry;
@@ -107,7 +109,7 @@ namespace Tank_Combat.Models
             {
                 newCenterX -= SpeedX;
             }
-            Tank tankAtNewPosition = new(Type, newCenterX, newCenterY);
+            Tank tankAtNewPosition = new(Type, ScreenWidth, newCenterX, newCenterY);
 
             foreach (var barrier in barriers)
             {
@@ -146,7 +148,7 @@ namespace Tank_Combat.Models
                     dx -= 30;
                 }
 
-                Bullets.Add(new Bullet(this.CenterX, this.CenterY, (int)dx, (int)dy, angle));
+                Bullets.Add(new Bullet(this.CenterX, this.CenterY, (int)dx, (int)dy, ScreenWidth, angle));
                 Time.Restart();
             }
             ;

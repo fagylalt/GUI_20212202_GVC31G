@@ -16,13 +16,15 @@ namespace Tank_Combat.Models
         public int SpeedX { get; set; }
         public int SpeedY { get; set; }
         public int Angle { get; set; }
+        public int ScreenWidth { get; set; }
 
-        public Bullet(int centerX, int centerY, int speedX, int speedY, int angle)
+        public Bullet(int centerX, int centerY, int speedX, int speedY, int screenWidth, int angle)
         {
             CenterX = centerX;
             CenterY = centerY;
             SpeedX = speedX;
             SpeedY = speedY;
+            ScreenWidth = screenWidth;
             Angle = angle;
         }
 
@@ -30,7 +32,7 @@ namespace Tank_Combat.Models
         {
             get
             {
-                return new EllipseGeometry(new Point(CenterX, CenterY), 10, 20);
+                return new EllipseGeometry(new Point(CenterX, CenterY), ScreenWidth/300, ScreenWidth/150);
             }
         }
         #endregion
