@@ -24,21 +24,49 @@ namespace Tank_Combat.Models
         public int SpeedY { get; set; }
         public double Angle { get; set; }
         public int Hp { get; set; }
+        public int ReloadTime { get; set; }
+        public int Damage { get; set; }
         public List<Bullet> Bullets { get; set; }
-        public Stopwatch time { get; set; }
+        public Stopwatch Time { get; set; }
 
-        public Tank(TankType type, int centerX, int centerY, int speedX, int speedY, double angle = 0)
+        public Tank(TankType type, int centerX, int centerY, double angle = 0)
         {
             Type = type;
             CenterX = centerX;
             CenterY = centerY;
-            SpeedX = speedX;
-            SpeedY = speedY;
             Angle = angle;
-            Hp = 3;
+            SetUpBasicTankProperties();
             Bullets = new List<Bullet>();
-            time = new Stopwatch();
-            time.Start();
+            Time = new Stopwatch();
+            Time.Start();
+        }
+
+        public void SetUpBasicTankProperties()
+        {
+            if (Type == TankType.HeavyTank)
+            {
+                Hp = 10;
+                ReloadTime = 800;
+                Damage = 3;
+                SpeedX = 2;
+                SpeedY = 2;
+            }
+            else if (Type == TankType.ArmoderTank)
+            {
+                Hp = 8;
+                ReloadTime = 600;
+                Damage = 2;
+                SpeedX = 3;
+                SpeedY = 3;
+            }
+            else if (Type == TankType.LightTank)
+            {
+                Hp = 5;
+                ReloadTime = 500;
+                Damage = 1;
+                SpeedX = 4;
+                SpeedY = 4;
+            }
         }
 
         public override Geometry Area
@@ -79,7 +107,7 @@ namespace Tank_Combat.Models
             {
                 newCenterX -= SpeedX;
             }
-            Tank tankAtNewPosition = new(Type, newCenterX, newCenterY, 0, 0);
+            Tank tankAtNewPosition = new(Type, newCenterX, newCenterY);
 
             foreach (var barrier in barriers)
             {
@@ -97,7 +125,7 @@ namespace Tank_Combat.Models
 
         public void Shoot(int angle)
         {
-            if (time.ElapsedMilliseconds>500)
+            if (Time.ElapsedMilliseconds>500)
             {
                 double dx = 0;
                 double dy = 0;
@@ -119,7 +147,7 @@ namespace Tank_Combat.Models
                 }
 
                 Bullets.Add(new Bullet(this.CenterX, this.CenterY, (int)dx, (int)dy, angle));
-                time.Restart();
+                Time.Restart();
             }
             ;
         }

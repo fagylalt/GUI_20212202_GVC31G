@@ -84,10 +84,12 @@ namespace Tank_Combat.Renderer
             if(area.Width> 0 && area.Height > 0 && model != null)
             {
                 drawingContext.DrawRectangle(BackGroundBrush, null, new Rect(0, 0, area.Width, area.Height));
-                drawingContext.DrawGeometry(EnemyBrush, null, model.EnemyTank.Area);
-                ;
+                
                 drawingContext.PushTransform(new RotateTransform(model.PlayerTank.Angle-90, model.PlayerTank.CenterX, model.PlayerTank.CenterY));
                 drawingContext.DrawGeometry(FriendlyTankBrush, null, model.PlayerTank.Area);
+                drawingContext.Pop();
+                drawingContext.PushTransform(new RotateTransform(model.EnemyTank.Angle, model.EnemyTank.CenterX, model.EnemyTank.CenterY));
+                drawingContext.DrawGeometry(EnemyBrush, null, model.EnemyTank.Area);
                 drawingContext.Pop();
 
                 //drawingContext.DrawGeometry(FriendlyTankBrush, null, model.PlayerTank.Area);
