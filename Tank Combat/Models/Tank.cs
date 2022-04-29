@@ -127,7 +127,7 @@ namespace Tank_Combat.Models
 
         public void Shoot(int angle)
         {
-            if (Time.ElapsedMilliseconds>500)
+            if (Time.ElapsedMilliseconds>ReloadTime)
             {
                 double dx = 0;
                 double dy = 0;
