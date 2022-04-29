@@ -18,12 +18,16 @@ namespace Tank_Combat.Models
         public int CenterX { get; set; }
         public int CenterY { get; set; }
         public int Hp { get; set; }
+        public int ScreenHeight { get; set; }
+        public int ScreenWidth { get; set; }
 
-        public Terrain(TerrainType type, int centerX, int centerY)
+        public Terrain(TerrainType type, int screenWidth, int screenHeight, int centerX, int centerY)
         {
             Type = type;
             CenterX = centerX;
             CenterY = centerY;
+            ScreenHeight = screenHeight;
+            ScreenWidth = screenWidth;
             if (Type == TerrainType.HeavyWall)
             {
                 Hp = 8;
@@ -40,7 +44,7 @@ namespace Tank_Combat.Models
         {
             get
             {
-                return new RectangleGeometry(new Rect(new Point(CenterX, CenterY), new Size(200, 200)));
+                return new RectangleGeometry(new Rect(new Point(ScreenWidth/16 * CenterX, ScreenHeight/9 * CenterY), new Size(ScreenWidth/16, ScreenHeight/9)));
             }
         }
 

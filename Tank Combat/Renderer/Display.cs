@@ -34,9 +34,9 @@ namespace Tank_Combat.Renderer
         {
             this.model = _model;
             this.model.Changed += (sender, EventArgs) => this.InvalidateVisual();
-            this.model.Terrains.Add(new Terrain(TerrainType.HeavyWall, 500, 150));
-            this.model.Terrains.Add(new Terrain(TerrainType.Building, 1500, 600));
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, 780, 1000));
+            this.model.Terrains.Add(new Terrain(TerrainType.HeavyWall, (int)area.Width, (int)area.Height, 0, 0));
+            this.model.Terrains.Add(new Terrain(TerrainType.Building, (int)area.Width, (int)area.Height, 15, 8));
+            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 8, 5));
             foreach (var terrain in model.Terrains)
             {
                 model.Barriers.Add(terrain);
