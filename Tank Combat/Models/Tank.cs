@@ -152,9 +152,9 @@ namespace Tank_Combat.Models
             ;
         }
 
-        public void GotHit()
+        public void GotHit(int dmg)
         {
-            Hp -= 1;
+            Hp -= dmg;
         }
         #endregion
     }

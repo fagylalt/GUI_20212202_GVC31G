@@ -92,8 +92,6 @@ namespace Tank_Combat.Renderer
                 drawingContext.DrawGeometry(EnemyBrush, null, model.EnemyTank.Area);
                 drawingContext.Pop();
 
-                //drawingContext.DrawGeometry(FriendlyTankBrush, null, model.PlayerTank.Area);
-
                 foreach (var terrain in model.Terrains)
                 {
                     if (terrain.Type==TerrainType.HeavyWall)
@@ -110,10 +108,6 @@ namespace Tank_Combat.Renderer
                     }
                     
                 }
-                //drawingContext.DrawGeometry(BunkerBrush, null, new Terrain(TerrainType.HeavyWall, 75, 75).Area);
-                //drawingContext.DrawGeometry(BuildingBrush, null, new Terrain(TerrainType.Building,150,150).Area);
-                //drawingContext.DrawGeometry(WallBrush, null, new Terrain(TerrainType.LightWall, 0, 0).Area);
-                //drawingContext.DrawGeometry(BulletBrush, null, model.SingleBullet.Area);
 
                 if (model.PlayerTank.Bullets.Count()>0)
                 {
@@ -125,9 +119,6 @@ namespace Tank_Combat.Renderer
                     }
                 }
             }
-
-
-
         }
        
         public Brush EnemyBrush

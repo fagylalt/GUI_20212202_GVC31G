@@ -26,11 +26,11 @@ namespace Tank_Combat.Models
             CenterY = centerY;
             if (Type == TerrainType.HeavyWall)
             {
-                Hp = 2;
+                Hp = 8;
             }
             else if (Type == TerrainType.LightWall)
             {
-                Hp = 1;
+                Hp = 5;
             }
             else if (Type == TerrainType.Building)
                 Hp = int.MaxValue;
@@ -44,9 +44,9 @@ namespace Tank_Combat.Models
             }
         }
 
-        public void GotHit()
+        public void GotHit(int dmg)
         {
-            Hp -= 1;
+            Hp -= dmg;
         }
     }
 }

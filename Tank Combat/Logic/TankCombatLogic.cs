@@ -23,11 +23,6 @@ namespace Tank_Combat.Logic
         public event EventHandler Changed;
         public event EventHandler GameOver;
 
-        public bool isUpKeyDown = false;
-        public bool isDownKeyDown = false;
-        public bool isLeftKeyDown = false;
-        public bool isRightKeyDown = false;
-
         #region Keys
         List<Key> keysCurrentlyDown;
         public Key[] movementKeys = { Key.Up, Key.Down, Key.Right, Key.Left };
@@ -206,29 +201,34 @@ namespace Tank_Combat.Logic
                     if (bullet.IsCollision(EnemyTank))
                     {
                         PlayerTank.Bullets.Remove(bullet);
-                        EnemyTank.GotHit();
+                        EnemyTank.GotHit(PlayerTank.Damage);
                         if (EnemyTank.Hp <= 0)
                         {
                             GameOver?.Invoke(this, null);
                         }
 
                     }
-                    if (bullet.IsCollision(MapFrame))
+                    else if (bullet.IsCollision(MapFrame))
                     {
                         PlayerTank.Bullets.Remove(bullet);
                     }
-                    foreach (var terrain in Terrains.ToList())
+                    else
                     {
-                        if (bullet.IsCollision(terrain))
+                        foreach (var terrain in Terrains.ToList())
                         {
-                            PlayerTank.Bullets.Remove(bullet);
-                            terrain.GotHit();
-                            if (terrain.Hp <= 0)
+                            if (bullet.IsCollision(terrain))
                             {
-                                Terrains.Remove(terrain);
+                                PlayerTank.Bullets.Remove(bullet);
+                                terrain.GotHit(PlayerTank.Damage);
+                                if (terrain.Hp <= 0)
+                                {
+                                    Terrains.Remove(terrain);
+                                    Barriers.Remove(terrain);
+                                }
                             }
                         }
                     }
+                    
                 }
             }
             #endregion
@@ -237,30 +237,34 @@ namespace Tank_Combat.Logic
             foreach (var bullet in EnemyTank.Bullets)
             {
                 bullet.Move();
-                foreach (var terrain in Terrains)
-                {
-                    if (bullet.IsCollision(terrain))
-                    {
-                        EnemyTank.Bullets.Remove(bullet);
-                        terrain.GotHit();
-                        if (terrain.Hp <= 0)
-                        {
-                            Terrains.Remove(terrain);
-                        }
-                    }
-                }
                 if (bullet.IsCollision(PlayerTank))
                 {
                     EnemyTank.Bullets.Remove(bullet);
-                    PlayerTank.GotHit();
+                    PlayerTank.GotHit(EnemyTank.Damage);
                     if (PlayerTank.Hp <= 0)
                     {
                         GameOver?.Invoke(this, null);
                     }
                 }
-                if (bullet.IsCollision(MapFrame))
+                else if (bullet.IsCollision(MapFrame))
                 {
                     EnemyTank.Bullets.Remove(bullet);
+                }
+                else
+                {
+                    foreach (var terrain in Terrains)
+                    {
+                        if (bullet.IsCollision(terrain))
+                        {
+                            EnemyTank.Bullets.Remove(bullet);
+                            terrain.GotHit(PlayerTank.Damage);
+                            if (terrain.Hp <= 0)
+                            {
+                                Terrains.Remove(terrain);
+                                Barriers.Remove(terrain);
+                            }
+                        }
+                    }
                 }
             }
             #endregion
