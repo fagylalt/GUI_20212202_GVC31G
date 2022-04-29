@@ -14,11 +14,13 @@
         <Grid Grid.Row="0">
             <Label FontSize="36" HorizontalAlignment="Center" Content="Credits" Margin="330,0" Grid.RowSpan="2" FontWeight="Bold" Foreground="White"/>
         </Grid>
-        <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label Content="Made By" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="White"/>
-            <Label Content="Kálvin Ferenc" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="30" FontWeight="Bold" Foreground="White"/>
-            <Label Content="Répási Gergely" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="White"/>
-            <Label Content="Bakos Dániel" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="White"/>
+        <StackPanel Grid.Row="1">
+            <Image Source="/Menu/Textures/Credits.png"
+                   Stretch="Fill"
+                   Width="350"
+                   Height="250"
+                   Margin="0,25,0,0"
+            />
         </StackPanel>
     </Grid>
 </UserControl>

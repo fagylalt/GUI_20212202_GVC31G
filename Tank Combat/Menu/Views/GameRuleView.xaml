@@ -7,23 +7,10 @@
              mc:Ignorable="d" 
              Height="453" Width="550">
     <Grid Margin="0,0,0,0">
-        <Label Content="Game Rules" Margin="0,56,0,340" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
-        <Label Content="The plan is simple, you have to eliminate the enemy tank." Margin="0,116,0,304" FontSize="19" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold"/>
-        <Label Content="Controls" Margin="0,149,0,249" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
-        <Rectangle Margin="38,209,308,134" >
-            <Rectangle.Fill>
-                <ImageBrush ImageSource="/Menu/Textures/arrowkey.png"></ImageBrush>
-            </Rectangle.Fill>
-        </Rectangle>
-
-        <Rectangle Margin="251,265,19,134" >
-            <Rectangle.Fill>
-                <ImageBrush ImageSource="/Menu/Textures/spacebar.jpg"></ImageBrush>
-            </Rectangle.Fill>
-        </Rectangle>
-
-        <Label Content="Move the tank"  FontSize="20" HorizontalContentAlignment="Center" Margin="38,319,300,93"  Foreground="White" FontWeight="Bold"/>
-        <Label Content="Shoot" FontSize="20" HorizontalContentAlignment="Center" Margin="322,319,90,95" Foreground="white" FontWeight="Bold"/>
-
+        <StackPanel Grid.Row="1" Margin="0,45,0,0">
+            <Image Source="/Menu/Textures/Game_rules.png"
+               Stretch="UniformToFill"
+            />
+        </StackPanel>
     </Grid>
 </UserControl>
