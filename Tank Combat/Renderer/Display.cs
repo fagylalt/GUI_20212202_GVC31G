@@ -81,6 +81,8 @@ namespace Tank_Combat.Renderer
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
+
+
             if(area.Width> 0 && area.Height > 0 && model != null)
             {
                 drawingContext.DrawRectangle(BackGroundBrush, null, new Rect(0, 0, area.Width, area.Height));
@@ -91,6 +93,12 @@ namespace Tank_Combat.Renderer
                 drawingContext.PushTransform(new RotateTransform(model.EnemyTank.Angle, model.EnemyTank.CenterX, model.EnemyTank.CenterY));
                 drawingContext.DrawGeometry(EnemyBrush, null, model.EnemyTank.Area);
                 drawingContext.Pop();
+
+                drawingContext.DrawGeometry(Brushes.DarkGray, null, model.PlayerTank.HpIndicator.Children[0]);
+                drawingContext.DrawGeometry(Brushes.DeepSkyBlue, null, model.PlayerTank.HpIndicator.Children[1]);
+
+                drawingContext.DrawGeometry(Brushes.DarkGray, null, model.EnemyTank.HpIndicator.Children[0]);
+                drawingContext.DrawGeometry(Brushes.Red, null, model.EnemyTank.HpIndicator.Children[1]);
 
                 foreach (var terrain in model.Terrains)
                 {

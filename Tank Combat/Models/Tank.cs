@@ -23,6 +23,7 @@ namespace Tank_Combat.Models
         public int SpeedX { get; set; }
         public int SpeedY { get; set; }
         public double Angle { get; set; }
+        public int MaxHp { get; set; }
         public int Hp { get; set; }
         public int ReloadTime { get; set; }
         public int Damage { get; set; }
@@ -48,7 +49,8 @@ namespace Tank_Combat.Models
             double _const = (double)ScreenWidth / 1000;
             if (Type == TankType.HeavyTank)
             {
-                Hp = 10;
+                MaxHp = 10;
+                Hp = MaxHp;
                 ReloadTime = 800;
                 Damage = 3;
                 SpeedX = (int)(2 * _const);
@@ -56,7 +58,8 @@ namespace Tank_Combat.Models
             }
             else if (Type == TankType.ArmoderTank)
             {
-                Hp = 8;
+                MaxHp = 8;
+                Hp = MaxHp;
                 ReloadTime = 600;
                 Damage = 2;
                 SpeedX = (int)(3 * _const);
@@ -64,11 +67,37 @@ namespace Tank_Combat.Models
             }
             else if (Type == TankType.LightTank)
             {
-                Hp = 5;
+                MaxHp = 5;
+                Hp = MaxHp;
                 ReloadTime = 500;
                 Damage = 1;
                 SpeedX = (int)(4 * _const);
                 SpeedY = (int)(4 * _const);
+            }
+        }
+
+        public GeometryGroup HpIndicator
+        {
+            get
+            {
+                GeometryGroup group = new GeometryGroup();
+                double xSize = ScreenWidth / 20;
+                double ySize = xSize * 0.75;
+                double remainingHpRate;
+                if (Hp>0)
+                {
+                    remainingHpRate = (double)Hp/(double)MaxHp;
+                }
+                else
+                {
+                    remainingHpRate = 0;
+                }
+
+                Geometry backround = new RectangleGeometry(new Rect(new Point(CenterX - xSize / 4, CenterY - ySize), new Size(xSize / 2, 10)));
+                Geometry foreground = new RectangleGeometry(new Rect(new Point(CenterX - xSize / 4, CenterY - ySize), new Size((xSize/2)*remainingHpRate, 10)));
+                group.Children.Add(backround);
+                group.Children.Add(foreground);
+                return group;
             }
         }
 
