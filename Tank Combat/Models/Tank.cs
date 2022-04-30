@@ -14,9 +14,15 @@ namespace Tank_Combat.Models
         HeavyTank, LightTank, ArmoderTank
     }
 
+    public enum Team
+    {
+        Blue, Red
+    }
+
     internal class Tank : GameItem
     {
         #region Setup
+        public Team Team { get; set; }
         public TankType Type { get; set; }
         public int CenterX { get; set; }
         public int CenterY { get; set; }
@@ -25,20 +31,23 @@ namespace Tank_Combat.Models
         public double Angle { get; set; }
         public int MaxHp { get; set; }
         public int Hp { get; set; }
+        public int Lives { get; set; }
         public int ReloadTime { get; set; }
         public int Damage { get; set; }
         public int ScreenWidth { get; set; }
         public List<Bullet> Bullets { get; set; }
         public Stopwatch Time { get; set; }
 
-        public Tank(TankType type, int screenWidth, int centerX, int centerY, double angle = 0)
+        public Tank(Team team, TankType type, int screenWidth, int centerX, int centerY, double angle = 0)
         {
+            Team = team;
             Type = type;
             CenterX = centerX;
             CenterY = centerY;
             Angle = angle;
             ScreenWidth = screenWidth;
             SetUpBasicTankProperties();
+            Lives = 3;
             Bullets = new List<Bullet>();
             Time = new Stopwatch();
             Time.Start();
@@ -101,6 +110,62 @@ namespace Tank_Combat.Models
             }
         }
 
+        public GeometryGroup LifeIndicators
+        {
+            get
+            {
+                if (this.Team == Team.Blue)
+                {
+                    GeometryGroup geometryGroup = new GeometryGroup();
+                    Geometry first = new RectangleGeometry(new Rect(new Point((ScreenWidth / 100) * 2, ScreenWidth / 100), new Size(ScreenWidth / 50, ScreenWidth / 50)));
+                    Geometry second = new RectangleGeometry(new Rect(new Point((ScreenWidth / 100) * 6, ScreenWidth / 100), new Size(ScreenWidth / 50, ScreenWidth / 50)));
+                    Geometry third = new RectangleGeometry(new Rect(new Point((ScreenWidth / 100) * 10, ScreenWidth / 100), new Size(ScreenWidth / 50, ScreenWidth / 50)));
+                    geometryGroup.Children.Add(first);
+                    geometryGroup.Children.Add(second);
+                    geometryGroup.Children.Add(third);
+                    return geometryGroup;
+                }
+                else
+                {
+                    GeometryGroup geometryGroup = new GeometryGroup();
+                    Geometry first = new RectangleGeometry(new Rect(new Point((ScreenWidth - (ScreenWidth / 100) * 6 + ScreenWidth / 50), ScreenWidth / 100), new Size(ScreenWidth / 50, ScreenWidth / 50)));
+                    Geometry second = new RectangleGeometry(new Rect(new Point((ScreenWidth - (ScreenWidth / 100) * 10 + ScreenWidth / 50), ScreenWidth / 100), new Size(ScreenWidth / 50, ScreenWidth / 50)));
+                    Geometry third = new RectangleGeometry(new Rect(new Point((ScreenWidth - (ScreenWidth / 100) * 14 + ScreenWidth / 50), ScreenWidth / 100), new Size(ScreenWidth / 50, ScreenWidth / 50)));
+                    geometryGroup.Children.Add(first);
+                    geometryGroup.Children.Add(second);
+                    geometryGroup.Children.Add(third);
+                    return geometryGroup;
+                }
+            }
+        }
+
+        public GeometryGroup LifeIndicatorBackground
+        {
+            get
+            {
+                if (this.Team == Team.Blue)
+                {
+                    GeometryGroup geometryGroup = new GeometryGroup();
+                    Geometry background = new RectangleGeometry(new Rect(new Point(0, ScreenWidth / 100), new Size((ScreenWidth / 100) * 14, ScreenWidth / 50)));
+                    Geometry background2 = new EllipseGeometry(new Point((ScreenWidth / 100) * 14, ScreenWidth / 50), ScreenWidth / 100, ScreenWidth / 100);
+                    geometryGroup.Children.Add(background);
+                    geometryGroup.Children.Add(background2);
+                    geometryGroup.FillRule = FillRule.Nonzero;
+                    return geometryGroup;
+                }
+                else
+                {
+                    GeometryGroup geometryGroup = new GeometryGroup();
+                    Geometry background = new RectangleGeometry(new Rect(new Point(ScreenWidth - (ScreenWidth / 100) * 14, ScreenWidth / 100), new Size((ScreenWidth / 100) * 14, ScreenWidth / 50)));
+                    Geometry background2 = new EllipseGeometry(new Point((ScreenWidth - (ScreenWidth / 100) * 14), ScreenWidth / 50), ScreenWidth / 100, ScreenWidth / 100);
+                    geometryGroup.Children.Add(background);
+                    geometryGroup.Children.Add(background2);
+                    geometryGroup.FillRule = FillRule.Nonzero;
+                    return geometryGroup;
+                }
+            }
+        }
+
         public override Geometry Area
         {
             get
@@ -139,7 +204,7 @@ namespace Tank_Combat.Models
             {
                 newCenterX -= SpeedX;
             }
-            Tank tankAtNewPosition = new(Type, ScreenWidth, newCenterX, newCenterY);
+            Tank tankAtNewPosition = new(Team, Type, ScreenWidth, newCenterX, newCenterY);
 
             foreach (var barrier in barriers)
             {
@@ -188,6 +253,14 @@ namespace Tank_Combat.Models
         public void GotHit(int dmg)
         {
             Hp -= dmg;
+            if (Lives > 0)
+            {
+                if (Hp <= 0)
+                {
+                    Lives -= 1;
+                    Hp = MaxHp;
+                }
+            }
         }
         #endregion
     }

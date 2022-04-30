@@ -86,36 +86,30 @@ namespace Tank_Combat.Renderer
             if(area.Width> 0 && area.Height > 0 && model != null)
             {
                 drawingContext.DrawRectangle(BackGroundBrush, null, new Rect(0, 0, area.Width, area.Height));
-                
+
+                foreach (var terrain in model.Terrains)
+                {
+                    if (terrain.Type == TerrainType.HeavyWall)
+                    {
+                        drawingContext.DrawGeometry(BunkerBrush, null, terrain.Area);
+                    }
+                    else if (terrain.Type == TerrainType.Building)
+                    {
+                        drawingContext.DrawGeometry(BuildingBrush, null, terrain.Area);
+                    }
+                    else if (terrain.Type == TerrainType.LightWall)
+                    {
+                        drawingContext.DrawGeometry(WallBrush, null, terrain.Area);
+                    }
+
+                }
+
                 drawingContext.PushTransform(new RotateTransform(model.PlayerTank.Angle-90, model.PlayerTank.CenterX, model.PlayerTank.CenterY));
                 drawingContext.DrawGeometry(FriendlyTankBrush, null, model.PlayerTank.Area);
                 drawingContext.Pop();
                 drawingContext.PushTransform(new RotateTransform(model.EnemyTank.Angle, model.EnemyTank.CenterX, model.EnemyTank.CenterY));
                 drawingContext.DrawGeometry(EnemyBrush, null, model.EnemyTank.Area);
                 drawingContext.Pop();
-
-                drawingContext.DrawGeometry(Brushes.DarkGray, null, model.PlayerTank.HpIndicator.Children[0]);
-                drawingContext.DrawGeometry(Brushes.DeepSkyBlue, null, model.PlayerTank.HpIndicator.Children[1]);
-
-                drawingContext.DrawGeometry(Brushes.DarkGray, null, model.EnemyTank.HpIndicator.Children[0]);
-                drawingContext.DrawGeometry(Brushes.Red, null, model.EnemyTank.HpIndicator.Children[1]);
-
-                foreach (var terrain in model.Terrains)
-                {
-                    if (terrain.Type==TerrainType.HeavyWall)
-                    {
-                        drawingContext.DrawGeometry(BunkerBrush, null, terrain.Area);
-                    }
-                    else if (terrain.Type==TerrainType.Building)
-                    {
-                        drawingContext.DrawGeometry(BuildingBrush, null, terrain.Area);
-                    }
-                    else if (terrain.Type==TerrainType.LightWall)
-                    {
-                        drawingContext.DrawGeometry(WallBrush, null, terrain.Area);
-                    }
-                    
-                }
 
                 if (model.PlayerTank.Bullets.Count()>0)
                 {
@@ -126,6 +120,31 @@ namespace Tank_Combat.Renderer
                         drawingContext.Pop();
                     }
                 }
+
+                drawingContext.DrawGeometry(Brushes.DarkGray, null, model.PlayerTank.HpIndicator.Children[0]);
+                drawingContext.DrawGeometry(Brushes.DeepSkyBlue, null, model.PlayerTank.HpIndicator.Children[1]);
+
+                drawingContext.DrawGeometry(Brushes.DarkGray, null, model.EnemyTank.HpIndicator.Children[0]);
+                drawingContext.DrawGeometry(Brushes.Red, null, model.EnemyTank.HpIndicator.Children[1]);
+
+                drawingContext.DrawGeometry(Metal, null, model.PlayerTank.LifeIndicatorBackground);
+                drawingContext.DrawGeometry(Metal, null, model.EnemyTank.LifeIndicatorBackground);
+                //drawingContext.DrawGeometry(Brushes.DarkGray, null, model.PlayerTank.LifeIndicators.Children[3]);
+                for (int i = 0; i < model.PlayerTank.Lives; i++)
+                {
+                    drawingContext.DrawGeometry(BluePlayerIconBrush, null, model.PlayerTank.LifeIndicators.Children[i]);
+                }
+                //drawingContext.DrawGeometry(BluePlayerLightIconBrush, null, model.PlayerTank.LifeIndicators.Children[0]);
+                //drawingContext.DrawGeometry(BluePlayerLightIconBrush, null, model.PlayerTank.LifeIndicators.Children[1]);
+                //drawingContext.DrawGeometry(BluePlayerLightIconBrush, null, model.PlayerTank.LifeIndicators.Children[2]);
+
+                for (int i = 0; i < model.EnemyTank.Lives; i++)
+                {
+                    drawingContext.DrawGeometry(RedPlayerIconBrush, null, model.EnemyTank.LifeIndicators.Children[i]);
+                }
+                //drawingContext.DrawGeometry(RedPlayerLightIconBrush, null, model.EnemyTank.LifeIndicators.Children[0]);
+                //drawingContext.DrawGeometry(RedPlayerLightIconBrush, null, model.EnemyTank.LifeIndicators.Children[1]);
+                //drawingContext.DrawGeometry(RedPlayerLightIconBrush, null, model.EnemyTank.LifeIndicators.Children[2]);
             }
         }
        
@@ -170,6 +189,59 @@ namespace Tank_Combat.Renderer
             get
             {
             return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "Brick_wall.png"), UriKind.RelativeOrAbsolute)));
+            }
+        }
+
+        #region LifeIndicatorImages
+        public Brush RedPlayerIconBrush
+        {
+            get
+            {
+                if (model.EnemyTank.Type == TankType.LightTank)
+                {
+                    return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "enemy_light_icon.png"), UriKind.RelativeOrAbsolute)));
+                }
+                else if (model.EnemyTank.Type == TankType.ArmoderTank)
+                {
+                    return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "enemy_medium_icon.png"), UriKind.RelativeOrAbsolute)));
+                }
+                else if (model.EnemyTank.Type == TankType.HeavyTank)
+                {
+                    return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "enemy_heavy_icon.png"), UriKind.RelativeOrAbsolute)));
+                }
+                else
+                    return null;
+            }
+        }
+        
+        public Brush BluePlayerIconBrush
+        {
+            get
+            {
+                if (model.PlayerTank.Type == TankType.LightTank)
+                {
+                    return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "player_light_icon.png"), UriKind.RelativeOrAbsolute)));
+                }
+                else if (model.PlayerTank.Type == TankType.ArmoderTank)
+                {
+                    return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "player_medium_icon.png"), UriKind.RelativeOrAbsolute)));
+                }
+                else if (model.PlayerTank.Type == TankType.HeavyTank)
+                {
+                    return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "player_heavy_icon.png"), UriKind.RelativeOrAbsolute)));
+                }
+                else
+                    return null;
+                
+            }
+        }
+        #endregion
+
+        public Brush Metal
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "metal_background.jpg"), UriKind.RelativeOrAbsolute)));
             }
         }
 

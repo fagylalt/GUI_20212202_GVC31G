@@ -44,8 +44,8 @@ namespace Tank_Combat.Logic
         public TankCombatLogic(int screenWidth, int screenHeight, TankType playerTankType, TankType enemyTankType)
         {
             MapFrame = new MapFrame(screenWidth, screenHeight);
-            PlayerTank = new Tank(playerTankType, screenWidth, screenWidth / 5, screenHeight / 2, 90);
-            EnemyTank = new Tank(enemyTankType, screenWidth, screenWidth * 4 / 5, screenHeight / 2, 180);
+            PlayerTank = new Tank(Team.Blue, playerTankType, screenWidth, screenWidth / 5, screenHeight / 2, 90);
+            EnemyTank = new Tank(Team.Red, enemyTankType, screenWidth, screenWidth * 4 / 5, screenHeight / 2, 180);
             Terrains = new List<Terrain>();
             Barriers = new List<GameItem>();
             Barriers.Add(PlayerTank);
@@ -202,7 +202,7 @@ namespace Tank_Combat.Logic
                     {
                         PlayerTank.Bullets.Remove(bullet);
                         EnemyTank.GotHit(PlayerTank.Damage);
-                        if (EnemyTank.Hp <= 0)
+                        if (EnemyTank.Lives <= 0)
                         {
                             GameOver?.Invoke(this, null);
                         }
@@ -241,7 +241,7 @@ namespace Tank_Combat.Logic
                 {
                     EnemyTank.Bullets.Remove(bullet);
                     PlayerTank.GotHit(EnemyTank.Damage);
-                    if (PlayerTank.Hp <= 0)
+                    if (PlayerTank.Lives <= 0)
                     {
                         GameOver?.Invoke(this, null);
                     }
