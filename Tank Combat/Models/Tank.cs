@@ -45,29 +45,30 @@ namespace Tank_Combat.Models
 
         public void SetUpBasicTankProperties()
         {
+            double _const = (double)ScreenWidth / 1000;
             if (Type == TankType.HeavyTank)
             {
                 Hp = 10;
                 ReloadTime = 800;
                 Damage = 3;
-                SpeedX = 2;
-                SpeedY = 2;
+                SpeedX = (int)(2 * _const);
+                SpeedY = (int)(2 * _const);
             }
             else if (Type == TankType.ArmoderTank)
             {
                 Hp = 8;
                 ReloadTime = 600;
                 Damage = 2;
-                SpeedX = 3;
-                SpeedY = 3;
+                SpeedX = (int)(3 * _const);
+                SpeedY = (int)(3 * _const);
             }
             else if (Type == TankType.LightTank)
             {
                 Hp = 5;
                 ReloadTime = 500;
                 Damage = 1;
-                SpeedX = 4;
-                SpeedY = 4;
+                SpeedX = (int)(4 * _const);
+                SpeedY = (int)(4 * _const);
             }
         }
 
@@ -129,23 +130,24 @@ namespace Tank_Combat.Models
         {
             if (Time.ElapsedMilliseconds>ReloadTime)
             {
+                int _const = ScreenWidth / 100;
                 double dx = 0;
                 double dy = 0;
                 if (angle == 0)
                 {
-                    dy -= 30;
+                    dy -= _const;
                 }
                 else if (angle == 90)
                 {
-                    dx += 30;
+                    dx += _const;
                 }
                 else if (angle == 180)
                 {
-                    dy += 30;
+                    dy += _const;
                 }
                 else if (angle == 270)
                 {
-                    dx -= 30;
+                    dx -= _const;
                 }
 
                 Bullets.Add(new Bullet(this.CenterX, this.CenterY, (int)dx, (int)dy, ScreenWidth, angle));
