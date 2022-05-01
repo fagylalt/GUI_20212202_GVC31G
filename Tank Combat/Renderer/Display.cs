@@ -70,13 +70,6 @@ namespace Tank_Combat.Renderer
                 enemyTankImage = "RED_light_tank.png";
             }
         }
-        public Brush BackGroundBrush
-        {
-            get
-            {
-                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "Grassy_background.png"),UriKind.RelativeOrAbsolute)));
-            }
-        }
 
         protected override void OnRender(DrawingContext drawingContext)
         {
@@ -87,6 +80,7 @@ namespace Tank_Combat.Renderer
             {
                 drawingContext.DrawRectangle(BackGroundBrush, null, new Rect(0, 0, area.Width, area.Height));
 
+                #region Draw Terrains
                 foreach (var terrain in model.Terrains)
                 {
                     if (terrain.Type == TerrainType.HeavyWall)
@@ -103,14 +97,18 @@ namespace Tank_Combat.Renderer
                     }
 
                 }
+                #endregion
 
+                #region Draw Tanks
                 drawingContext.PushTransform(new RotateTransform(model.PlayerTank.Angle-90, model.PlayerTank.CenterX, model.PlayerTank.CenterY));
                 drawingContext.DrawGeometry(FriendlyTankBrush, null, model.PlayerTank.Area);
                 drawingContext.Pop();
-                drawingContext.PushTransform(new RotateTransform(model.EnemyTank.Angle, model.EnemyTank.CenterX, model.EnemyTank.CenterY));
+                drawingContext.PushTransform(new RotateTransform(model.EnemyTank.Angle-90, model.EnemyTank.CenterX, model.EnemyTank.CenterY));
                 drawingContext.DrawGeometry(EnemyBrush, null, model.EnemyTank.Area);
                 drawingContext.Pop();
+                #endregion
 
+                #region Draw Bullets
                 if (model.PlayerTank.Bullets.Count()>0)
                 {
                     foreach (var bullet in model.PlayerTank.Bullets)
@@ -121,6 +119,18 @@ namespace Tank_Combat.Renderer
                     }
                 }
 
+                if (model.EnemyTank.Bullets.Count() > 0)
+                {
+                    foreach (var bullet in model.EnemyTank.Bullets)
+                    {
+                        drawingContext.PushTransform(new RotateTransform(bullet.Angle, bullet.CenterX, bullet.CenterY));
+                        drawingContext.DrawGeometry(BulletBrush, null, bullet.Area);
+                        drawingContext.Pop();
+                    }
+                }
+                #endregion
+
+                #region Draw Life Indicators
                 drawingContext.DrawGeometry(Brushes.DarkGray, null, model.PlayerTank.HpIndicator.Children[0]);
                 drawingContext.DrawGeometry(Brushes.DeepSkyBlue, null, model.PlayerTank.HpIndicator.Children[1]);
 
@@ -145,9 +155,19 @@ namespace Tank_Combat.Renderer
                 //drawingContext.DrawGeometry(RedPlayerLightIconBrush, null, model.EnemyTank.LifeIndicators.Children[0]);
                 //drawingContext.DrawGeometry(RedPlayerLightIconBrush, null, model.EnemyTank.LifeIndicators.Children[1]);
                 //drawingContext.DrawGeometry(RedPlayerLightIconBrush, null, model.EnemyTank.LifeIndicators.Children[2]);
+                #endregion
             }
         }
-       
+
+        #region Get Brushes
+        public Brush BackGroundBrush
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "Grassy_background.png"), UriKind.RelativeOrAbsolute)));
+            }
+        }
+
         public Brush EnemyBrush
         {
             get 
@@ -244,6 +264,6 @@ namespace Tank_Combat.Renderer
                 return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "metal_background.jpg"), UriKind.RelativeOrAbsolute)));
             }
         }
-
+        #endregion
     }
 }

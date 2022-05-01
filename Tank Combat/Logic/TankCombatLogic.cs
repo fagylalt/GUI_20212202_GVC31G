@@ -24,16 +24,20 @@ namespace Tank_Combat.Logic
         public event EventHandler GameOver;
 
         #region Keys
-        List<Key> keysCurrentlyDown;
-        public Key[] movementKeys = { Key.Up, Key.Down, Key.Right, Key.Left };
+        List<Key> blueKeysCurrentlyDown;
+        List<Key> redKeysCurrentlyDown;
+        public Key[] blueMovementKeys = { Key.W, Key.A, Key.S, Key.D };
+        public Key[] redMovementKeys = { Key.Up, Key.Down, Key.Right, Key.Left };
         //private KeyStates[] oldStates = new KeyStates[mov];
-        private List<KeyStates> oldStates;
-        private Key movementKey;
+        private List<KeyStates> blueOldStates;
+        private List<KeyStates> redOldStates;
+        private Key blueMovementKey;
+        private Key redMovementKey;
         #endregion
 
         public enum Controls
         {
-            Up, Down, Left, Right, Space
+            Up, Down, Left, Right, Enter, A, W, S, D, Space
         }
 
         public void SetUpSizes(int screenWidth, int screenHeight)
@@ -45,7 +49,7 @@ namespace Tank_Combat.Logic
         {
             MapFrame = new MapFrame(screenWidth, screenHeight);
             PlayerTank = new Tank(Team.Blue, playerTankType, screenWidth, screenWidth / 5, screenHeight / 2, 90);
-            EnemyTank = new Tank(Team.Red, enemyTankType, screenWidth, screenWidth * 4 / 5, screenHeight / 2, 180);
+            EnemyTank = new Tank(Team.Red, enemyTankType, screenWidth, screenWidth * 4 / 5, screenHeight / 2, 270);
             Terrains = new List<Terrain>();
             Barriers = new List<GameItem>();
             Barriers.Add(PlayerTank);
@@ -55,12 +59,13 @@ namespace Tank_Combat.Logic
             {
                 Barriers.Add(terrain);
             }
-            oldStates = new List<KeyStates>();
-            foreach (var _movementKey in movementKeys)
+            blueOldStates = new List<KeyStates>();
+            foreach (var _movementKey in blueMovementKeys)
             {
-                oldStates.Add(Keyboard.GetKeyStates(_movementKey));
+                blueOldStates.Add(Keyboard.GetKeyStates(_movementKey));
             }
-            keysCurrentlyDown = new();
+            blueKeysCurrentlyDown = new();
+            redKeysCurrentlyDown = new();
         }
         #endregion
 
@@ -90,24 +95,43 @@ namespace Tank_Combat.Logic
 
             switch (control)
             {
-                case Controls.Up:
+                case Controls.W:
                     PlayerTank.Angle = 0;
                     PlayerTank.Move((int)PlayerTank.Angle, Barriers);
                     break;
-                case Controls.Down:
+                case Controls.S:
                     PlayerTank.Angle = 180;
                     PlayerTank.Move((int)PlayerTank.Angle, Barriers);
                     break;
-                case Controls.Left:
+                case Controls.A:
                     PlayerTank.Angle = 270;
                     PlayerTank.Move((int)PlayerTank.Angle, Barriers);
                     break;
-                case Controls.Right:
+                case Controls.D:
                     PlayerTank.Angle = 90;
                     PlayerTank.Move((int)PlayerTank.Angle, Barriers);
                     break;
                 case Controls.Space:
                     PlayerTank.Shoot((int)PlayerTank.Angle);
+                    break;
+                case Controls.Up:
+                    EnemyTank.Angle = 0;
+                    EnemyTank.Move((int)EnemyTank.Angle, Barriers);
+                    break;
+                case Controls.Down:
+                    EnemyTank.Angle = 180;
+                    EnemyTank.Move((int)EnemyTank.Angle, Barriers);
+                    break;
+                case Controls.Left:
+                    EnemyTank.Angle = 270;
+                    EnemyTank.Move((int)EnemyTank.Angle, Barriers);
+                    break;
+                case Controls.Right:
+                    EnemyTank.Angle = 90;
+                    EnemyTank.Move((int)EnemyTank.Angle, Barriers);
+                    break;
+                case Controls.Enter:
+                    EnemyTank.Shoot((int)EnemyTank.Angle);
                     break;
                 default:
                     break;
@@ -117,26 +141,48 @@ namespace Tank_Combat.Logic
 
         public void GetLastKeyPressed()
         {
-            foreach (var key in movementKeys)
+            foreach (var key in blueMovementKeys)
             {
                 KeyStates currentStatus = Keyboard.GetKeyStates(key);
-                if (currentStatus.HasFlag(KeyStates.Down) && !keysCurrentlyDown.Contains(key))
+                if (currentStatus.HasFlag(KeyStates.Down) && !blueKeysCurrentlyDown.Contains(key))
                 {
-                    keysCurrentlyDown.Add(key);
+                    blueKeysCurrentlyDown.Add(key);
                 }
-                if (!currentStatus.HasFlag(KeyStates.Down) && keysCurrentlyDown.Contains(key))
+                if (!currentStatus.HasFlag(KeyStates.Down) && blueKeysCurrentlyDown.Contains(key))
                 {
-                    keysCurrentlyDown.Remove(key);
+                    blueKeysCurrentlyDown.Remove(key);
                 }
             }
 
-            if (keysCurrentlyDown.Count > 0)
+            if (blueKeysCurrentlyDown.Count > 0)
             {
-                movementKey = keysCurrentlyDown.Last();
+                blueMovementKey = blueKeysCurrentlyDown.Last();
             }
             else
             {
-                movementKey = Key.None;
+                blueMovementKey = Key.None;
+            }
+
+            foreach (var key in redMovementKeys)
+            {
+                KeyStates currentStatus = Keyboard.GetKeyStates(key);
+                if (currentStatus.HasFlag(KeyStates.Down) && !redKeysCurrentlyDown.Contains(key))
+                {
+                    redKeysCurrentlyDown.Add(key);
+                }
+                if (!currentStatus.HasFlag(KeyStates.Down) && redKeysCurrentlyDown.Contains(key))
+                {
+                    redKeysCurrentlyDown.Remove(key);
+                }
+            }
+
+            if (redKeysCurrentlyDown.Count > 0)
+            {
+                redMovementKey = redKeysCurrentlyDown.Last();
+            }
+            else
+            {
+                redMovementKey = Key.None;
             }
 
             //bool isAnyKeyPressed = false;
@@ -171,25 +217,46 @@ namespace Tank_Combat.Logic
         public void TimeStep()
         {
             GetLastKeyPressed();
-            if (movementKey == Key.Right)
+            if (blueMovementKey == Key.D)
             {
-                Control(Controls.Right);
+                Control(Controls.D);
             }
-            else if (movementKey == Key.Left)
+            else if (blueMovementKey == Key.A)
             {
-                Control(Controls.Left);
+                Control(Controls.A);
             }
-            else if (movementKey == Key.Up)
+            else if (blueMovementKey == Key.W)
             {
-                Control(Controls.Up);
+                Control(Controls.W);
             }
-            else if (movementKey == Key.Down)
+            else if (blueMovementKey == Key.S)
             {
-                Control(Controls.Down);
+                Control(Controls.S);
             }
             if (Keyboard.IsKeyDown(Key.Space))
             {
                 Control(Controls.Space);
+            }
+
+            if (redMovementKey == Key.Right)
+            {
+                Control(Controls.Right);
+            }
+            else if (redMovementKey == Key.Left)
+            {
+                Control(Controls.Left);
+            }
+            else if (redMovementKey == Key.Up)
+            {
+                Control(Controls.Up);
+            }
+            else if (redMovementKey == Key.Down)
+            {
+                Control(Controls.Down);
+            }
+            if (Keyboard.IsKeyDown(Key.Enter))
+            {
+                Control(Controls.Enter);
             }
 
             #region PlayerTank bullets collisions
@@ -234,7 +301,7 @@ namespace Tank_Combat.Logic
             #endregion
 
             #region EnemyTank bullets collisions
-            foreach (var bullet in EnemyTank.Bullets)
+            foreach (var bullet in EnemyTank.Bullets.ToList())
             {
                 bullet.Move();
                 if (bullet.IsCollision(PlayerTank))
@@ -252,7 +319,7 @@ namespace Tank_Combat.Logic
                 }
                 else
                 {
-                    foreach (var terrain in Terrains)
+                    foreach (var terrain in Terrains.ToList())
                     {
                         if (bullet.IsCollision(terrain))
                         {
