@@ -14,8 +14,13 @@
     <None Remove="Images\BLUE_light_tank.png" />
     <None Remove="Images\Brick_wall.png" />
     <None Remove="Images\Bunker.png" />
+    <None Remove="Images\enemy_heavy_icon.png" />
+    <None Remove="Images\enemy_light_icon.png" />
     <None Remove="Images\Grassy_background.png" />
     <None Remove="Images\House.png" />
+    <None Remove="Images\metal_background.jpg" />
+    <None Remove="Images\player_light_icon.png" />
+    <None Remove="Images\player_medium_icon.png" />
     <None Remove="Images\RED_basic_tank.png" />
     <None Remove="Images\RED_heavy_tank.png" />
     <None Remove="Images\RED_light_tank.png" />
@@ -43,10 +48,25 @@
     <Content Include="Images\Bunker.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\enemy_heavy_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\enemy_light_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Grassy_background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\House.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\metal_background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\player_light_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\player_medium_icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\RED_basic_tank.png">
