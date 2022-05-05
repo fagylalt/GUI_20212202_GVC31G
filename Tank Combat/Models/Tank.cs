@@ -64,7 +64,7 @@ namespace Tank_Combat.Models
             {
                 MaxHp = 10;
                 Hp = MaxHp;
-                ReloadTime = 800;
+                ReloadTime = 2000;
                 Damage = 3;
                 SpeedX = (int)(2 * _const);
                 SpeedY = (int)(2 * _const);
@@ -73,7 +73,7 @@ namespace Tank_Combat.Models
             {
                 MaxHp = 8;
                 Hp = MaxHp;
-                ReloadTime = 600;
+                ReloadTime = 1100;
                 Damage = 2;
                 SpeedX = (int)(3 * _const);
                 SpeedY = (int)(3 * _const);
@@ -82,7 +82,7 @@ namespace Tank_Combat.Models
             {
                 MaxHp = 5;
                 Hp = MaxHp;
-                ReloadTime = 500;
+                ReloadTime = 600;
                 Damage = 1;
                 SpeedX = (int)(4 * _const);
                 SpeedY = (int)(4 * _const);
