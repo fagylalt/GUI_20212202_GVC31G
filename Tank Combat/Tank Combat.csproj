@@ -16,9 +16,11 @@
     <None Remove="Images\Bunker.png" />
     <None Remove="Images\enemy_heavy_icon.png" />
     <None Remove="Images\enemy_light_icon.png" />
+    <None Remove="Images\enemy_medium_icon.png" />
     <None Remove="Images\Grassy_background.png" />
     <None Remove="Images\House.png" />
     <None Remove="Images\metal_background.jpg" />
+    <None Remove="Images\player_heavy_icon.png" />
     <None Remove="Images\player_light_icon.png" />
     <None Remove="Images\player_medium_icon.png" />
     <None Remove="Images\RED_basic_tank.png" />
@@ -54,6 +56,9 @@
     <Content Include="Images\enemy_light_icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\enemy_medium_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Grassy_background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -61,6 +66,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\metal_background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\player_heavy_icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\player_light_icon.png">

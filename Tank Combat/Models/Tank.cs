@@ -89,6 +89,28 @@ namespace Tank_Combat.Models
             }
         }
 
+        public Geometry ReloadTimeOnScreen
+        {
+            get
+            {
+                double timeRemaining = this.ReloadTime;
+                if (this.Time.ElapsedMilliseconds<=ReloadTime)
+                {
+                    timeRemaining -= this.Time.ElapsedMilliseconds;
+                }
+                else
+                {
+                    timeRemaining = 0;
+                }
+                timeRemaining /= 1000;
+                FormattedText text = new FormattedText(Math.Round(timeRemaining, 1).ToString() + "s", System.Globalization.CultureInfo.CurrentCulture,
+                FlowDirection.LeftToRight, new Typeface(new FontFamily("Arial"), FontStyles.Normal,
+                FontWeights.ExtraBold, FontStretches.Normal), ScreenWidth/100, Brushes.Black, 10);
+                Geometry textGeometry = text.BuildGeometry(new Point(CenterX + ScreenWidth/60, CenterY - ScreenWidth/27));
+                return textGeometry;
+            }
+        }
+
         public GeometryGroup HpIndicator
         {
             get
@@ -267,7 +289,6 @@ namespace Tank_Combat.Models
                     Time.Restart();
                 }
             }
-            ;
         }
 
         public void GotHit(int dmg)

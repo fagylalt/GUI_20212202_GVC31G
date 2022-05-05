@@ -90,6 +90,7 @@ namespace Tank_Combat.Renderer
             {
                 drawingContext.DrawRectangle(BackGroundBrush, null, new Rect(0, 0, area.Width, area.Height));
 
+
                 Respawn(model.PlayerTank, model.EnemyTank, ref blueTankLives, ref blueTankOpacity, ref blueInvincibilityTime, ref blueDown);
                 Respawn(model.EnemyTank, model.PlayerTank, ref redTankLives, ref redTankOpacity, ref redInvincibilityTime, ref redDown);
 
@@ -169,6 +170,26 @@ namespace Tank_Combat.Renderer
                 //drawingContext.DrawGeometry(RedPlayerLightIconBrush, null, model.EnemyTank.LifeIndicators.Children[1]);
                 //drawingContext.DrawGeometry(RedPlayerLightIconBrush, null, model.EnemyTank.LifeIndicators.Children[2]);
                 #endregion
+
+                if (model.PlayerTank.Time.ElapsedMilliseconds>model.PlayerTank.ReloadTime)
+                {
+                    drawingContext.DrawGeometry(Brushes.Green, new Pen(Brushes.Black, 1), model.PlayerTank.ReloadTimeOnScreen);
+                }
+                else
+                {
+                    drawingContext.DrawGeometry(Brushes.Red, new Pen(Brushes.Black, 1), model.PlayerTank.ReloadTimeOnScreen);
+                }
+
+                if (model.EnemyTank.Time.ElapsedMilliseconds>model.EnemyTank.ReloadTime)
+                {
+                    drawingContext.DrawGeometry(Brushes.Green, new Pen(Brushes.Black, 1), model.EnemyTank.ReloadTimeOnScreen);
+                }
+                else
+                {
+                    drawingContext.DrawGeometry(Brushes.Red, new Pen(Brushes.Black, 1), model.EnemyTank.ReloadTimeOnScreen);
+                }
+                
+                
             }
         }
 
