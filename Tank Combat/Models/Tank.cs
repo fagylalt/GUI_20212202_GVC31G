@@ -35,6 +35,8 @@ namespace Tank_Combat.Models
         public int ReloadTime { get; set; }
         public int Damage { get; set; }
         public int ScreenWidth { get; set; }
+        public bool IsRespawning { get; set; }
+        public bool IsRespawnOvertime { get; set; }
         public List<Bullet> Bullets { get; set; }
         public Stopwatch Time { get; set; }
 
@@ -48,6 +50,8 @@ namespace Tank_Combat.Models
             ScreenWidth = screenWidth;
             SetUpBasicTankProperties();
             Lives = 3;
+            IsRespawning = false;
+            IsRespawnOvertime = false;
             Bullets = new List<Bullet>();
             Time = new Stopwatch();
             Time.Start();
@@ -102,8 +106,8 @@ namespace Tank_Combat.Models
                     remainingHpRate = 0;
                 }
 
-                Geometry backround = new RectangleGeometry(new Rect(new Point(CenterX - xSize / 4, CenterY - ySize), new Size(xSize / 2, 10)));
-                Geometry foreground = new RectangleGeometry(new Rect(new Point(CenterX - xSize / 4, CenterY - ySize), new Size((xSize/2)*remainingHpRate, 10)));
+                Geometry backround = new RectangleGeometry(new Rect(new Point(CenterX - xSize / 4, CenterY - ySize), new Size(xSize / 2, xSize / 12.8)));
+                Geometry foreground = new RectangleGeometry(new Rect(new Point(CenterX - xSize / 4, CenterY - ySize), new Size((xSize/2)*remainingHpRate, xSize / 12.8)));
                 group.Children.Add(backround);
                 group.Children.Add(foreground);
                 return group;
@@ -208,9 +212,22 @@ namespace Tank_Combat.Models
 
             foreach (var barrier in barriers)
             {
-                if (tankAtNewPosition.IsCollision(barrier) && !this.Equals(barrier))
+                if (barrier.GetType() == this.GetType())
                 {
-                    isInBarrier = true;
+                    if (!(barrier as Tank)!.IsRespawning && !this.IsRespawning)
+                    {
+                        if (tankAtNewPosition.IsCollision(barrier) && !this.Equals(barrier))
+                        {
+                            isInBarrier = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (tankAtNewPosition.IsCollision(barrier) && !this.Equals(barrier))
+                    {
+                        isInBarrier = true;
+                    }
                 }
             }
             if (!isInBarrier)
@@ -224,28 +241,31 @@ namespace Tank_Combat.Models
         {
             if (Time.ElapsedMilliseconds>ReloadTime)
             {
-                int _const = ScreenWidth / 100;
-                double dx = 0;
-                double dy = 0;
-                if (angle == 0)
+                if (!this.IsRespawning)
                 {
-                    dy -= _const;
-                }
-                else if (angle == 90)
-                {
-                    dx += _const;
-                }
-                else if (angle == 180)
-                {
-                    dy += _const;
-                }
-                else if (angle == 270)
-                {
-                    dx -= _const;
-                }
+                    int _const = ScreenWidth / 100;
+                    double dx = 0;
+                    double dy = 0;
+                    if (angle == 0)
+                    {
+                        dy -= _const;
+                    }
+                    else if (angle == 90)
+                    {
+                        dx += _const;
+                    }
+                    else if (angle == 180)
+                    {
+                        dy += _const;
+                    }
+                    else if (angle == 270)
+                    {
+                        dx -= _const;
+                    }
 
-                Bullets.Add(new Bullet(this.CenterX, this.CenterY, (int)dx, (int)dy, ScreenWidth, angle));
-                Time.Restart();
+                    Bullets.Add(new Bullet(this.CenterX, this.CenterY, (int)dx, (int)dy, ScreenWidth, angle));
+                    Time.Restart();
+                }
             }
             ;
         }

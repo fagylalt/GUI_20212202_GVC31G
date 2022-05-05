@@ -16,7 +16,6 @@ namespace Tank_Combat.Logic
         public MapFrame MapFrame { get; set; }
         public List<Terrain> Terrains { get; set; }
         public List<GameItem> Barriers { get; set; }
-        public Bullet SingleBullet { get; set; }
         public TankType PlayerTankType { get; set; }
         public TankType EnemyTankType { get; set; }
 
@@ -28,9 +27,6 @@ namespace Tank_Combat.Logic
         List<Key> redKeysCurrentlyDown;
         public Key[] blueMovementKeys = { Key.W, Key.A, Key.S, Key.D };
         public Key[] redMovementKeys = { Key.Up, Key.Down, Key.Right, Key.Left };
-        //private KeyStates[] oldStates = new KeyStates[mov];
-        private List<KeyStates> blueOldStates;
-        private List<KeyStates> redOldStates;
         private Key blueMovementKey;
         private Key redMovementKey;
         #endregion
@@ -58,11 +54,6 @@ namespace Tank_Combat.Logic
             foreach (var terrain in Terrains)
             {
                 Barriers.Add(terrain);
-            }
-            blueOldStates = new List<KeyStates>();
-            foreach (var _movementKey in blueMovementKeys)
-            {
-                blueOldStates.Add(Keyboard.GetKeyStates(_movementKey));
             }
             blueKeysCurrentlyDown = new();
             redKeysCurrentlyDown = new();
@@ -265,7 +256,7 @@ namespace Tank_Combat.Logic
                 foreach (var bullet in PlayerTank.Bullets.ToList())
                 {
                     bullet.Move();
-                    if (bullet.IsCollision(EnemyTank))
+                    if (!EnemyTank.IsRespawning && bullet.IsCollision(EnemyTank))
                     {
                         PlayerTank.Bullets.Remove(bullet);
                         EnemyTank.GotHit(PlayerTank.Damage);
@@ -304,7 +295,7 @@ namespace Tank_Combat.Logic
             foreach (var bullet in EnemyTank.Bullets.ToList())
             {
                 bullet.Move();
-                if (bullet.IsCollision(PlayerTank))
+                if (!PlayerTank.IsRespawning && bullet.IsCollision(PlayerTank))
                 {
                     EnemyTank.Bullets.Remove(bullet);
                     PlayerTank.GotHit(EnemyTank.Damage);

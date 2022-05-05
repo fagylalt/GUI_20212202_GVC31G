@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,14 +16,22 @@ namespace Tank_Combat.Renderer
     internal class Display: FrameworkElement
     {
         Size area;
-        Random rand;
         IGameModel model;
         string playerTankImage;
         string enemyTankImage;
+        Stopwatch blueInvincibilityTime;
+        Stopwatch redInvincibilityTime;
+        private double blueTankOpacity = 1;
+        private double redTankOpacity = 1;
+        bool blueDown = true;
+        bool redDown = true;
+        int blueTankLives;
+        int redTankLives;
 
         public Display()
         {
-            rand = new Random();
+            blueInvincibilityTime = new Stopwatch();
+            redInvincibilityTime = new Stopwatch();
         }
 
         public void SizeSetup(Size _area)
@@ -41,6 +50,8 @@ namespace Tank_Combat.Renderer
             {
                 model.Barriers.Add(terrain);
             }
+            blueTankLives = 3;
+            redTankLives = 3;
         }
         public void SetUpTankImages(TankType playerTankType, TankType enemyTankType)
         {
@@ -75,10 +86,12 @@ namespace Tank_Combat.Renderer
         {
             base.OnRender(drawingContext);
 
-
             if(area.Width> 0 && area.Height > 0 && model != null)
             {
                 drawingContext.DrawRectangle(BackGroundBrush, null, new Rect(0, 0, area.Width, area.Height));
+
+                Respawn(model.PlayerTank, model.EnemyTank, ref blueTankLives, ref blueTankOpacity, ref blueInvincibilityTime, ref blueDown);
+                Respawn(model.EnemyTank, model.PlayerTank, ref redTankLives, ref redTankOpacity, ref redInvincibilityTime, ref redDown);
 
                 #region Draw Terrains
                 foreach (var terrain in model.Terrains)
@@ -159,6 +172,76 @@ namespace Tank_Combat.Renderer
             }
         }
 
+        public void Respawn(Tank thisTank, Tank otherTank, ref int tankLives, ref double tankOpacity, ref Stopwatch invincibilityTime, ref bool down)
+        {
+            if (tankLives != thisTank.Lives)
+            {
+                tankLives = thisTank.Lives;
+                invincibilityTime.Start();
+                if (thisTank.Team == Team.Blue)
+                {
+                    thisTank.CenterX = (int)area.Width / 5;
+                    thisTank.CenterY = (int)area.Height / 2;
+                }
+                else
+                {
+                    thisTank.CenterX = (int)area.Width / 5 * 4;
+                    thisTank.CenterY = (int)area.Height / 2;
+                }
+                
+                thisTank.IsRespawning = true;
+            }
+
+            if (invincibilityTime.ElapsedMilliseconds > 0 && invincibilityTime.ElapsedMilliseconds <= 2000)
+            {
+                BlendTank(ref tankOpacity, ref down);
+            }
+            else if (thisTank.IsRespawning && invincibilityTime.ElapsedMilliseconds > 2000)
+            {
+                invincibilityTime.Stop();
+                invincibilityTime.Reset();
+                thisTank.IsRespawnOvertime = true;
+            }
+            else if (thisTank.IsRespawning == true && thisTank.IsRespawnOvertime)
+            {
+                if (!thisTank.IsCollision(otherTank))
+                {
+                    thisTank.IsRespawning = false;
+                    thisTank.IsRespawnOvertime = false;
+                }
+                else
+                {
+                    BlendTank(ref tankOpacity, ref down);
+                }
+            }
+            else if (tankOpacity < 1)
+            {
+                BlendTank(ref tankOpacity, ref down);
+            }
+        }
+
+        public static void BlendTank(ref double tankOpacity, ref bool down)
+        {
+            if (tankOpacity <= 0)
+            {
+                down = false;
+            }
+            else if (tankOpacity >= 1)
+            {
+                down = true;
+            }
+
+            if (down)
+            {
+                tankOpacity -= 0.1;
+            }
+            else if (!down)
+            {
+                tankOpacity += 0.1;
+            }
+            
+        }
+
         #region Get Brushes
         public Brush BackGroundBrush
         {
@@ -171,8 +254,10 @@ namespace Tank_Combat.Renderer
         public Brush EnemyBrush
         {
             get 
-            { 
-            return new ImageBrush( new BitmapImage(new Uri(Path.Combine("Images", enemyTankImage), UriKind.RelativeOrAbsolute)));
+            {
+                var brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", enemyTankImage), UriKind.RelativeOrAbsolute)));
+                brush.Opacity = redTankOpacity;
+                return brush;
             }
            
         }
@@ -187,7 +272,9 @@ namespace Tank_Combat.Renderer
         {
             get
             {
-                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", playerTankImage), UriKind.RelativeOrAbsolute)));
+                var brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", playerTankImage), UriKind.RelativeOrAbsolute)));
+                brush.Opacity = blueTankOpacity;
+                return brush;
             } 
         }
         public Brush BunkerBrush

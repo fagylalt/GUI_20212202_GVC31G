@@ -40,7 +40,6 @@ namespace Tank_Combat
             Array values = Enum.GetValues(typeof(TankType));
             Random random = new Random();
             enemyTankType = (TankType)values.GetValue(random.Next(values.Length))!;
-            ;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
