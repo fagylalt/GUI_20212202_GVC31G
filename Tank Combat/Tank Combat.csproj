@@ -12,6 +12,7 @@
     <None Remove="Images\BLUE_basic_tank.png" />
     <None Remove="Images\BLUE_heavy_tank.png" />
     <None Remove="Images\BLUE_light_tank.png" />
+    <None Remove="Images\blue_win.png" />
     <None Remove="Images\Brick_wall.png" />
     <None Remove="Images\Bunker.png" />
     <None Remove="Images\enemy_heavy_icon.png" />
@@ -26,6 +27,7 @@
     <None Remove="Images\RED_basic_tank.png" />
     <None Remove="Images\RED_heavy_tank.png" />
     <None Remove="Images\RED_light_tank.png" />
+    <None Remove="Images\red_win.png" />
     <None Remove="Images\shell.png" />
     <None Remove="Menu\Textures\armored_tank_button_green.png" />
     <None Remove="Menu\Textures\Credits.png" />
@@ -42,6 +44,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\BLUE_light_tank.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\blue_win.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Brick_wall.png">
@@ -84,6 +89,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\RED_light_tank.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\red_win.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Shell.png">
