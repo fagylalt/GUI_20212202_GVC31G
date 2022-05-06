@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using Tank_Combat.Logic;
+using Tank_Combat.Menu.Views;
 using Tank_Combat.Models;
 
 namespace Tank_Combat
@@ -31,15 +32,12 @@ namespace Tank_Combat
             logic.TimeStep();
             display.InvalidateVisual();
         }
-        public GameWindow(TankType playerTankType)
+        public GameWindow(TankType playerTankType, TankType enemyTankType)
         {
             InitializeComponent();
 
             this.playerTankType = playerTankType;
-
-            Array values = Enum.GetValues(typeof(TankType));
-            Random random = new Random();
-            enemyTankType = (TankType)values.GetValue(random.Next(values.Length))!;
+            this.enemyTankType = enemyTankType;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -85,8 +83,13 @@ namespace Tank_Combat
         }
         private void CloseCommandBinding_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
-            if (MessageBox.Show("Close?", "Close", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Are you sure you want to quit to the main menu?", "Quit to main menu", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                MenuWindow menuWindow = new MenuWindow();
+                menuWindow.Show();
                 this.Close();
+            }
+            
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e)

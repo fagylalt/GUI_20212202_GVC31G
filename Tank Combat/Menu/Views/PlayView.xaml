@@ -22,7 +22,10 @@
             <ImageBrush ImageSource="/Menu/Textures/play_menu_bg.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
 
-        <Label Foreground="LightBlue" Content="Choose from 3 different type of tank " HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="30" Grid.ColumnSpan="3"/>
+        <StackPanel Grid.ColumnSpan="3" HorizontalAlignment="Center">
+            <Label Foreground="LightBlue" Content="Blue player" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="30" Grid.ColumnSpan="3"/>
+            <Label Foreground="LightBlue" Content="Choose from 3 different type of tank" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="30" Grid.ColumnSpan="3"/>
+        </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,239,0,0" Grid.RowSpan="2">
             <Label BorderThickness="1" BorderBrush="Black" Foreground="LightBlue" Content="Health: high" FontSize="23" FontWeight="Bold" HorizontalContentAlignment="Center"/>
