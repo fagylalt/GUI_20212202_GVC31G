@@ -51,6 +51,7 @@ namespace Tank_Combat
             dt.Tick += Dt_Tick;
             dt.Start();
             display.InvalidateVisual();
+            logic.GameOver += GameOver;
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -98,6 +99,24 @@ namespace Tank_Combat
             //logic.isLeftKeyDown = false;
             //logic.isUpKeyDown = false;
             //logic.isDownKeyDown = false;
+        }
+
+        private void GameOver(object sender, System.EventArgs e)
+        {
+            if (logic.EnemyTank.Lives <= 0)
+            {
+                // Blue tank wow
+                GameOverView gameOverView = new GameOverView();
+                gameOverView.Show();
+                this.Close();
+            }
+            else
+            {
+                // Red tank won
+                GameOverView gameOverView = new GameOverView();
+                gameOverView.Show();
+                this.Close();
+            }
         }
     }
 }
