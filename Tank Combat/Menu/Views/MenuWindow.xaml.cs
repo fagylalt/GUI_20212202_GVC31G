@@ -42,7 +42,6 @@ namespace Tank_Combat.Menu.Views
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             PlayView playView = new PlayView();
-            //player.Stop();
             playView.Show();
             this.Close();
         }
