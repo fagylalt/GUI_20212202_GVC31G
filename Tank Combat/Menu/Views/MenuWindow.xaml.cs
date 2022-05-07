@@ -28,7 +28,6 @@ namespace Tank_Combat.Menu.Views
             this.DataContext = new MainViewModel();
 
             player = new SoundPlayer(Properties.Resources.CEPHEI___The_Enemy_Will_Not_Pass_Epic_Music);
-            player.Load();
             player.Play();
 
             bool soundFinished = true;
@@ -44,7 +43,6 @@ namespace Tank_Combat.Menu.Views
         {
             PlayView playView = new PlayView();
             playView.Show();
-            player.Stop();
             this.Close();
         }
     }
