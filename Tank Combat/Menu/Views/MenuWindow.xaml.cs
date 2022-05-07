@@ -21,12 +21,13 @@ namespace Tank_Combat.Menu.Views
     /// </summary>
     public partial class MenuWindow : Window
     {
+        SoundPlayer player;
         public MenuWindow()
         {
             InitializeComponent();
             this.DataContext = new MainViewModel();
 
-            SoundPlayer player = new SoundPlayer(Properties.Resources.CEPHEI___The_Enemy_Will_Not_Pass_Epic_Music);
+            player = new SoundPlayer(Properties.Resources.CEPHEI___The_Enemy_Will_Not_Pass_Epic_Music);
             player.Load();
             player.Play();
 
@@ -43,6 +44,7 @@ namespace Tank_Combat.Menu.Views
         {
             PlayView playView = new PlayView();
             playView.Show();
+            player.Stop();
             this.Close();
         }
     }

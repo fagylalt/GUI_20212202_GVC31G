@@ -34,6 +34,7 @@
     <None Remove="Menu\Textures\Game_rules.png" />
     <None Remove="Menu\Textures\heavy_tank_button_green.png" />
     <None Remove="Menu\Textures\light_tank_button_green.png" />
+    <None Remove="Resources\Tank_Fire.wav" />
     <None Remove="Sound\CEPHEI - The Enemy Will Not Pass Epic Music.wav" />
   </ItemGroup>
 
@@ -96,6 +97,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Shell.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Tank_Fire.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Sound\CEPHEI - The Enemy Will Not Pass Epic Music.wav">

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +24,7 @@ namespace Tank_Combat.Models
     internal class Tank : GameItem
     {
         #region Setup
+        SoundPlayer player;
         public Team Team { get; set; }
         public TankType Type { get; set; }
         public int CenterX { get; set; }
@@ -42,6 +45,7 @@ namespace Tank_Combat.Models
 
         public Tank(Team team, TankType type, int screenWidth, int centerX, int centerY, double angle = 0)
         {
+            player = new SoundPlayer();
             Team = team;
             Type = type;
             CenterX = centerX;
@@ -265,6 +269,9 @@ namespace Tank_Combat.Models
             {
                 if (!this.IsRespawning)
                 {
+                    player.SoundLocation = @"Resources\Tank_Fire.wav";
+                    player.Load();
+                    player.Play();
                     int _const = ScreenWidth / 100;
                     double dx = 0;
                     double dy = 0;
