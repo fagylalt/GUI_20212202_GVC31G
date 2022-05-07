@@ -13,7 +13,7 @@ namespace Tank_Combat.Models
 {
     public enum TankType
     {
-        HeavyTank, LightTank, ArmoderTank
+        HeavyTank, LightTank, ArmoredTank
     }
 
     public enum Team
@@ -73,7 +73,7 @@ namespace Tank_Combat.Models
                 SpeedX = (int)(2 * _const);
                 SpeedY = (int)(2 * _const);
             }
-            else if (Type == TankType.ArmoderTank)
+            else if (Type == TankType.ArmoredTank)
             {
                 MaxHp = 8;
                 Hp = MaxHp;

@@ -47,7 +47,7 @@ namespace Tank_Combat.Menu.Views
 
         private void Medium_Button_Click(object sender, RoutedEventArgs e)
         {
-            enemyTankType = TankType.ArmoderTank;
+            enemyTankType = TankType.ArmoredTank;
             GameWindow win = new GameWindow(playerTankType, enemyTankType);
             win.Show();
             this.Close();

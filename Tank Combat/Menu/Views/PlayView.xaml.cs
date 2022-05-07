@@ -41,7 +41,7 @@ namespace Tank_Combat.Menu.Views
 
         private void Medium_Button_Click(object sender, RoutedEventArgs e)
         {
-            SecondPlayView secondPlay = new SecondPlayView(Models.TankType.ArmoderTank);
+            SecondPlayView secondPlay = new SecondPlayView(Models.TankType.ArmoredTank);
             secondPlay.Show();
             this.Close();
         }

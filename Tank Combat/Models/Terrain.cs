@@ -10,7 +10,7 @@ namespace Tank_Combat.Models
 {
     enum TerrainType
     {
-        HeavyWall, Building, LightWall
+        Bunker, Building, LightWall
     }
     internal class Terrain : GameItem
     {
@@ -28,16 +28,16 @@ namespace Tank_Combat.Models
             CenterY = centerY;
             ScreenHeight = screenHeight;
             ScreenWidth = screenWidth;
-            if (Type == TerrainType.HeavyWall)
+            if (Type == TerrainType.Bunker)
             {
-                Hp = 8;
+                Hp = Int32.MaxValue;
             }
             else if (Type == TerrainType.LightWall)
             {
                 Hp = 5;
             }
             else if (Type == TerrainType.Building)
-                Hp = int.MaxValue;
+                Hp = 8;
         }
 
         public override Geometry Area
