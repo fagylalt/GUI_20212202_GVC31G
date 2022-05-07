@@ -113,8 +113,8 @@ namespace Tank_Combat
             else
             {
                 // Red tank won
-                GameOverView gameOverView = new GameOverView();
-                gameOverView.Show();
+                GameOverViewRed gameoverRed = new GameOverViewRed();
+                gameoverRed.Show();
                 this.Close();
             }
         }
