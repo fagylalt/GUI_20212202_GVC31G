@@ -19,6 +19,7 @@
     <None Remove="Images\enemy_light_icon.png" />
     <None Remove="Images\enemy_medium_icon.png" />
     <None Remove="Images\Grassy_background.png" />
+    <None Remove="Images\hedgehog.png" />
     <None Remove="Images\House.png" />
     <None Remove="Images\metal_background.jpg" />
     <None Remove="Images\player_heavy_icon.png" />
@@ -34,6 +35,7 @@
     <None Remove="Menu\Textures\Game_rules.png" />
     <None Remove="Menu\Textures\heavy_tank_button_green.png" />
     <None Remove="Menu\Textures\light_tank_button_green.png" />
+    <None Remove="Resources\Tank fire.wav" />
     <None Remove="Resources\Tank_Fire.wav" />
     <None Remove="Sound\CEPHEI - The Enemy Will Not Pass Epic Music.wav" />
   </ItemGroup>
@@ -69,6 +71,9 @@
     <Content Include="Images\Grassy_background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\hedgehog.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\House.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -97,6 +102,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Shell.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Tank fire.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Tank_Fire.wav">
