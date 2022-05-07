@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,6 +25,18 @@ namespace Tank_Combat.Menu.Views
         {
             InitializeComponent();
             this.DataContext = new MainViewModel();
+
+            SoundPlayer player = new SoundPlayer("CEPHEI - The Enemy Will Not Pass Epic Music.wav");
+            player.Load();
+            player.Play();
+
+            bool soundFinished = true;
+
+            if (soundFinished)
+            {
+                soundFinished = false;
+                Task.Factory.StartNew(() => { player.PlaySync(); soundFinished = true; });
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
