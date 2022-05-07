@@ -95,10 +95,7 @@ namespace Tank_Combat
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
-            //logic.isRightKeyDown=false;
-            //logic.isLeftKeyDown = false;
-            //logic.isUpKeyDown = false;
-            //logic.isDownKeyDown = false;
+
         }
 
         private void GameOver(object sender, System.EventArgs e)
