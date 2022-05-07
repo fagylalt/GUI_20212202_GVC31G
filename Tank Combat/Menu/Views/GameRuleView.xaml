@@ -5,12 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Tank_Combat.Menu.Views"
              mc:Ignorable="d" 
-             Height="453" Width="550">
-    <Grid Margin="0,0,0,0">
-        <StackPanel Grid.Row="1" Margin="0,45,0,0">
-            <Image Source="/Menu/Textures/Game_rules.png"
-               Stretch="UniformToFill"
-            />
-        </StackPanel>
+             Height="500" Width="550">
+    <Grid>
+        <Image Source="/Menu/Textures/game_rules_v2.png"  />
     </Grid>
 </UserControl>

@@ -29,10 +29,12 @@
     <None Remove="Images\RED_heavy_tank.png" />
     <None Remove="Images\RED_light_tank.png" />
     <None Remove="Images\red_win.png" />
+    <None Remove="Images\rules.png" />
     <None Remove="Images\shell.png" />
     <None Remove="Menu\Textures\armored_tank_button_green.png" />
     <None Remove="Menu\Textures\Credits.png" />
     <None Remove="Menu\Textures\Game_rules.png" />
+    <None Remove="Menu\Textures\game_rules_v2.png" />
     <None Remove="Menu\Textures\heavy_tank_button_green.png" />
     <None Remove="Menu\Textures\light_tank_button_green.png" />
     <None Remove="Resources\Tank fire.wav" />
@@ -113,6 +115,9 @@
     <Content Include="Sound\CEPHEI - The Enemy Will Not Pass Epic Music.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\rules.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Menu\Textures\Credits.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -171,6 +176,9 @@
     </Resource>
     <Resource Include="Menu\Textures\gamerules_green.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Menu\Textures\game_rules_v2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Menu\Textures\heavy_tank_button.png" />
     <Resource Include="Menu\Textures\heavy_tank_button_green.png" />

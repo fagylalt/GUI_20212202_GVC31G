@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Tank_Combat.Menu.Views"
         mc:Ignorable="d"
         Title="MenuWindow" Height="650" Width="1100" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-   
+
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Menu/Textures/tank_bg.jpg" Stretch="UniformToFill"/>
@@ -180,7 +180,7 @@
                         <RowDefinition Height="111*" />
                         <RowDefinition Height="11*" />
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Margin="0,0,0,5">
+                    <StackPanel Grid.Row="0" Margin="0,-51,0,0" Height="451" VerticalAlignment="Top">
                         <ContentControl Content="{Binding SelectedViewModel}" Grid.RowSpan="2" />
                     </StackPanel>
                 </Grid>
