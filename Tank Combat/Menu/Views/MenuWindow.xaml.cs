@@ -26,7 +26,7 @@ namespace Tank_Combat.Menu.Views
             InitializeComponent();
             this.DataContext = new MainViewModel();
 
-            SoundPlayer player = new SoundPlayer("CEPHEI - The Enemy Will Not Pass Epic Music.wav");
+            SoundPlayer player = new SoundPlayer(Properties.Resources.CEPHEI___The_Enemy_Will_Not_Pass_Epic_Music);
             player.Load();
             player.Play();
 
