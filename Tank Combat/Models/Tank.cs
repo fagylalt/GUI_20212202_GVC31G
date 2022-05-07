@@ -45,7 +45,7 @@ namespace Tank_Combat.Models
 
         public Tank(Team team, TankType type, int screenWidth, int centerX, int centerY, double angle = 0)
         {
-            player = new SoundPlayer();
+            player = new SoundPlayer(Properties.Resources.Tank_fire);
             Team = team;
             Type = type;
             CenterX = centerX;
@@ -269,8 +269,6 @@ namespace Tank_Combat.Models
             {
                 if (!this.IsRespawning)
                 {
-                    player.SoundLocation = @"Resources\Tank_Fire.wav";
-                    player.Load();
                     player.Play();
                     int _const = ScreenWidth / 100;
                     double dx = 0;

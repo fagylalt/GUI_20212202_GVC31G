@@ -105,7 +105,7 @@ namespace Tank_Combat
         {
             if (logic.EnemyTank.Lives <= 0)
             {
-                // Blue tank wow
+                // Blue tank won
                 GameOverView gameOverView = new GameOverView();
                 gameOverView.Show();
                 this.Close();

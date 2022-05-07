@@ -68,5 +68,14 @@ namespace Tank_Combat.Properties {
                 return ResourceManager.GetStream("CEPHEI___The_Enemy_Will_Not_Pass_Epic_Music", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Tank_fire {
+            get {
+                return ResourceManager.GetStream("Tank fire", resourceCulture);
+            }
+        }
     }
 }

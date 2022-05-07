@@ -121,4 +121,7 @@
   <data name="CEPHEI___The_Enemy_Will_Not_Pass_Epic_Music" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Sound\CEPHEI - The Enemy Will Not Pass Epic Music.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Tank fire" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tank fire.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

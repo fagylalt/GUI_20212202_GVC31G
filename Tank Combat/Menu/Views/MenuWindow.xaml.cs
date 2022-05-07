@@ -28,20 +28,21 @@ namespace Tank_Combat.Menu.Views
             this.DataContext = new MainViewModel();
 
             player = new SoundPlayer(Properties.Resources.CEPHEI___The_Enemy_Will_Not_Pass_Epic_Music);
-            player.Play();
+            //player.Play();
 
-            bool soundFinished = true;
+            //bool soundFinished = true;
 
-            if (soundFinished)
-            {
-                soundFinished = false;
-                Task.Factory.StartNew(() => { player.PlaySync(); soundFinished = true; });
-            }
+            //if (soundFinished)
+            //{
+            //    soundFinished = false;
+            //    Task.Factory.StartNew(() => { player.PlaySync(); soundFinished = true; });
+            //}
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             PlayView playView = new PlayView();
+            //player.Stop();
             playView.Show();
             this.Close();
         }
