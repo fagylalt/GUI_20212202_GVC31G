@@ -15,15 +15,14 @@ using System.Windows.Shapes;
 namespace Tank_Combat.Menu.Views
 {
     /// <summary>
-    /// Interaction logic for GameOverView.xaml
+    /// Interaction logic for GameOverViewRed.xaml
     /// </summary>
-    public partial class GameOverView : Window
+    public partial class GameOverViewRed : Window
     {
-        public GameOverView()
+        public GameOverViewRed()
         {
             InitializeComponent();
         }
-
         private void CloseCommandBinding_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to quit to the main menu?", "Quit to main menu", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
