@@ -315,7 +315,7 @@ namespace Tank_Combat.Logic
                         if (bullet.IsCollision(terrain))
                         {
                             EnemyTank.Bullets.Remove(bullet);
-                            terrain.GotHit(PlayerTank.Damage);
+                            terrain.GotHit(EnemyTank.Damage);
                             if (terrain.Hp <= 0)
                             {
                                 Terrains.Remove(terrain);
