@@ -44,8 +44,8 @@ namespace Tank_Combat.Logic
         public TankCombatLogic(int screenWidth, int screenHeight, TankType playerTankType, TankType enemyTankType)
         {
             MapFrame = new MapFrame(screenWidth, screenHeight);
-            PlayerTank = new Tank(Team.Blue, playerTankType, screenWidth, screenWidth / 5, screenHeight / 2, 90);
-            EnemyTank = new Tank(Team.Red, enemyTankType, screenWidth, screenWidth * 4 / 5, screenHeight / 2, 270);
+            PlayerTank = new Tank(Team.Blue, playerTankType, screenWidth, screenWidth / 32 * 5, screenHeight / 2, 90);
+            EnemyTank = new Tank(Team.Red, enemyTankType, screenWidth, screenWidth / 32 * 27, screenHeight / 2, 270);
             Terrains = new List<Terrain>();
             Barriers = new List<GameItem>();
             Barriers.Add(PlayerTank);

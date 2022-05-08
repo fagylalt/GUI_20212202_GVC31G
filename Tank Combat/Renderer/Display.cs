@@ -15,6 +15,8 @@ namespace Tank_Combat.Renderer
 {
     internal class Display: FrameworkElement
     {
+        string mapBackground;
+        string mapFile;
         Size area;
         IGameModel model;
         string playerTankImage;
@@ -49,56 +51,45 @@ namespace Tank_Combat.Renderer
         }
         public void MapSetup()
         {
-            //hedgehogs
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 1, 1));
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 1, 2));
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 5, 1));
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 5, 2));
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 10, 1));
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 10, 2));
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 14, 1));
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 14, 2));
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 4, 4));
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 5, 4));
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 10, 4));
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 11, 4));
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 2, 7));
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 4, 7));
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 4, 7));
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 12, 6));
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 10, 8));
-            this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, 14, 8));
+            Random random = new Random();
+            int mapNumber = random.Next(3);
+            if (mapNumber == 0)
+            {
+                mapBackground = "Grassy_background.png";
+                mapFile = "map_greenfield.txt";
+            }
+            else if (mapNumber == 1)
+            {
+                mapBackground = "Desert.jpg";
+                mapFile = "map_desert.txt";
+            }
+            else
+            {
+                mapBackground = "Winter.jpg";
+                mapFile = "map_winter.txt";
+            }
 
-            //bunkers
-            this.model.Terrains.Add(new Terrain(TerrainType.Bunker, (int)area.Width, (int)area.Height, 3, 0));
-            this.model.Terrains.Add(new Terrain(TerrainType.Bunker, (int)area.Width, (int)area.Height, 3, 1));
-            this.model.Terrains.Add(new Terrain(TerrainType.Bunker, (int)area.Width, (int)area.Height, 3, 2));
-            this.model.Terrains.Add(new Terrain(TerrainType.Bunker, (int)area.Width, (int)area.Height, 12, 0));
-            this.model.Terrains.Add(new Terrain(TerrainType.Bunker, (int)area.Width, (int)area.Height, 12, 1));
-            this.model.Terrains.Add(new Terrain(TerrainType.Bunker, (int)area.Width, (int)area.Height, 12, 2));
-            this.model.Terrains.Add(new Terrain(TerrainType.Bunker, (int)area.Width, (int)area.Height, 1, 6));
-            this.model.Terrains.Add(new Terrain(TerrainType.Bunker, (int)area.Width, (int)area.Height, 3, 8));
-            this.model.Terrains.Add(new Terrain(TerrainType.Bunker, (int)area.Width, (int)area.Height, 5, 6));
-            this.model.Terrains.Add(new Terrain(TerrainType.Bunker, (int)area.Width, (int)area.Height, 11, 7));
-            this.model.Terrains.Add(new Terrain(TerrainType.Bunker, (int)area.Width, (int)area.Height, 13, 7));
-            this.model.Terrains.Add(new Terrain(TerrainType.Bunker, (int)area.Width, (int)area.Height, 14, 4));
-            this.model.Terrains.Add(new Terrain(TerrainType.Bunker, (int)area.Width, (int)area.Height, 15, 4));
-            this.model.Terrains.Add(new Terrain(TerrainType.Bunker, (int)area.Width, (int)area.Height, 0, 4));
-            this.model.Terrains.Add(new Terrain(TerrainType.Bunker, (int)area.Width, (int)area.Height, 1, 4));
+            string[] lines = File.ReadAllLines("Maps/" + mapFile);
 
-            //houses
-            this.model.Terrains.Add(new Terrain(TerrainType.Building, (int)area.Width, (int)area.Height, 7, 4));
-            this.model.Terrains.Add(new Terrain(TerrainType.Building, (int)area.Width, (int)area.Height, 7, 5));
-            this.model.Terrains.Add(new Terrain(TerrainType.Building, (int)area.Width, (int)area.Height, 7, 2));
-            this.model.Terrains.Add(new Terrain(TerrainType.Building, (int)area.Width, (int)area.Height, 7, 1));
-            this.model.Terrains.Add(new Terrain(TerrainType.Building, (int)area.Width, (int)area.Height, 7, 0));
-            this.model.Terrains.Add(new Terrain(TerrainType.Building, (int)area.Width, (int)area.Height, 8, 7));
-            this.model.Terrains.Add(new Terrain(TerrainType.Building, (int)area.Width, (int)area.Height, 8, 8));
-            this.model.Terrains.Add(new Terrain(TerrainType.Building, (int)area.Width, (int)area.Height, 8, 9));
-            this.model.Terrains.Add(new Terrain(TerrainType.Building, (int)area.Width, (int)area.Height, 8, 4));
-            this.model.Terrains.Add(new Terrain(TerrainType.Building, (int)area.Width, (int)area.Height, 8, 5));
-
-
+            for (int y = 0; y < lines.GetLength(0); y++)
+            {
+                char[] chars = lines[y].ToCharArray();
+                for (int x = 0; x < chars.Length; x++)
+                {
+                    if (chars[x] == 'x')
+                    {
+                        this.model.Terrains.Add(new Terrain(TerrainType.LightWall, (int)area.Width, (int)area.Height, x, y));
+                    }
+                    else if (chars[x] == 'h')
+                    {
+                        this.model.Terrains.Add(new Terrain(TerrainType.Building, (int)area.Width, (int)area.Height, x, y));
+                    }
+                    else if (chars[x] == 'b')
+                    {
+                        this.model.Terrains.Add(new Terrain(TerrainType.Bunker, (int)area.Width, (int)area.Height, x, y));
+                    }
+                }
+            }
 
             foreach (var terrain in model.Terrains)
             {
@@ -254,12 +245,12 @@ namespace Tank_Combat.Renderer
                 invincibilityTime.Start();
                 if (thisTank.Team == Team.Blue)
                 {
-                    thisTank.CenterX = (int)area.Width / 5;
+                    thisTank.CenterX = (int)area.Width / 32 * 5;
                     thisTank.CenterY = (int)area.Height / 2;
                 }
                 else
                 {
-                    thisTank.CenterX = (int)area.Width / 5 * 4;
+                    thisTank.CenterX = (int)area.Width / 32 * 27;
                     thisTank.CenterY = (int)area.Height / 2;
                 }
                 
@@ -321,7 +312,7 @@ namespace Tank_Combat.Renderer
         {
             get
             {
-                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "Grassy_background.png"), UriKind.RelativeOrAbsolute)));
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", mapBackground), UriKind.RelativeOrAbsolute)));
             }
         }
 
