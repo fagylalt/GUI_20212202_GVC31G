@@ -1,0 +1,9 @@
+   b   h    b   
+ x b x h  x b x 
+ x b x h  x b x 
+                
+bb  xx hh xx  bb
+       hh       
+ b   b      b   
+  x x   h  b b  
+   b    h x   x 

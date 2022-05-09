@@ -15,6 +15,7 @@
     <None Remove="Images\blue_win.png" />
     <None Remove="Images\Brick_wall.png" />
     <None Remove="Images\Bunker.png" />
+    <None Remove="Images\Desert.jpg" />
     <None Remove="Images\enemy_heavy_icon.png" />
     <None Remove="Images\enemy_light_icon.png" />
     <None Remove="Images\enemy_medium_icon.png" />
@@ -31,6 +32,10 @@
     <None Remove="Images\red_win.png" />
     <None Remove="Images\rules.png" />
     <None Remove="Images\shell.png" />
+    <None Remove="Images\Winter.jpg" />
+    <None Remove="Maps\map_desert.txt" />
+    <None Remove="Maps\map_greenfield.txt" />
+    <None Remove="Maps\map_winter.txt" />
     <None Remove="Menu\Textures\armored_tank_button_green.png" />
     <None Remove="Menu\Textures\Credits.png" />
     <None Remove="Menu\Textures\Game_rules.png" />
@@ -59,6 +64,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Bunker.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Desert.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\enemy_heavy_icon.png">
@@ -104,6 +112,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Shell.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Winter.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Maps\map_desert.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Maps\map_greenfield.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Maps\map_winter.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Tank fire.wav">
