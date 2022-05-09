@@ -27,10 +27,19 @@ namespace Tank_Combat
         TankCombatLogic logic;
         TankType playerTankType;
         TankType enemyTankType;
+        bool isGameOver = false;
+
         private void Dt_Tick(object? sender, EventArgs e)
         {
-            logic.TimeStep();
-            display.InvalidateVisual();
+            if (!isGameOver)
+            {
+                logic.TimeStep();
+                display.InvalidateVisual();
+            }
+            else
+            {
+                logic = null;
+            }
         }
         public GameWindow(TankType playerTankType, TankType enemyTankType)
         {
@@ -89,6 +98,7 @@ namespace Tank_Combat
                 MenuWindow menuWindow = new MenuWindow();
                 menuWindow.Show();
                 this.Close();
+                isGameOver = true;
             }
             
         }
@@ -114,6 +124,7 @@ namespace Tank_Combat
                 gameoverRed.Show();
                 this.Close();
             }
+            isGameOver = true;
         }
     }
 }
