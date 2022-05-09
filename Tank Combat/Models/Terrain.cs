@@ -10,7 +10,7 @@ namespace Tank_Combat.Models
 {
     enum TerrainType
     {
-        Bunker, Building, LightWall
+        Bunker, Building, LightWall, Prohibited
     }
     internal class Terrain : GameItem
     {
@@ -38,6 +38,8 @@ namespace Tank_Combat.Models
             }
             else if (Type == TerrainType.Building)
                 Hp = 8;
+            else
+                Hp = Int32.MaxValue;
         }
 
         public override Geometry Area

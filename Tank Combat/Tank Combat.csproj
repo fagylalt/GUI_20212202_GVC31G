@@ -23,6 +23,7 @@
     <None Remove="Images\hedgehog.png" />
     <None Remove="Images\House.png" />
     <None Remove="Images\metal_background.jpg" />
+    <None Remove="Images\Obudai.png" />
     <None Remove="Images\player_heavy_icon.png" />
     <None Remove="Images\player_light_icon.png" />
     <None Remove="Images\player_medium_icon.png" />
@@ -35,6 +36,7 @@
     <None Remove="Images\Winter.jpg" />
     <None Remove="Maps\map_desert.txt" />
     <None Remove="Maps\map_greenfield.txt" />
+    <None Remove="Maps\map_obudai.txt" />
     <None Remove="Maps\map_winter.txt" />
     <None Remove="Menu\Textures\armored_tank_button_green.png" />
     <None Remove="Menu\Textures\Credits.png" />
@@ -90,6 +92,9 @@
     <Content Include="Images\metal_background.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Obudai.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\player_heavy_icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -121,6 +126,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Maps\map_greenfield.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Maps\map_obudai.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Maps\map_winter.txt">

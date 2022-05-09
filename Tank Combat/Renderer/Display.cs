@@ -29,6 +29,7 @@ namespace Tank_Combat.Renderer
         bool redDown = true;
         int blueTankLives;
         int redTankLives;
+        Random random = new Random();
 
         public Display()
         {
@@ -51,8 +52,7 @@ namespace Tank_Combat.Renderer
         }
         public void MapSetup()
         {
-            Random random = new Random();
-            int mapNumber = random.Next(3);
+            int mapNumber = random.Next(4);
             if (mapNumber == 0)
             {
                 mapBackground = "Grassy_background.png";
@@ -63,10 +63,15 @@ namespace Tank_Combat.Renderer
                 mapBackground = "Desert.jpg";
                 mapFile = "map_desert.txt";
             }
-            else
+            else if(mapNumber == 2)
             {
                 mapBackground = "Winter.jpg";
                 mapFile = "map_winter.txt";
+            }
+            else
+            {
+                mapBackground = "Obudai2.png";
+                mapFile = "map_obudai2.txt";
             }
 
             string[] lines = File.ReadAllLines("Maps/" + mapFile);
@@ -87,6 +92,10 @@ namespace Tank_Combat.Renderer
                     else if (chars[x] == 'b')
                     {
                         this.model.Terrains.Add(new Terrain(TerrainType.Bunker, (int)area.Width, (int)area.Height, x, y));
+                    }
+                    else if (chars[x] == 'p')
+                    {
+                        this.model.Terrains.Add(new Terrain(TerrainType.Prohibited, (int)area.Width, (int)area.Height, x, y));
                     }
                 }
             }
@@ -152,19 +161,24 @@ namespace Tank_Combat.Renderer
                     {
                         drawingContext.DrawGeometry(WallBrush, null, terrain.Area);
                     }
+                    else if (terrain.Type == TerrainType.Prohibited)
+                    {
+                        drawingContext.DrawGeometry(ProhibitedBrush, null, terrain.Area);
+                    }
 
                 }
                 #endregion
 
                 #region Draw Life Indicators
+                drawingContext.DrawGeometry(Metal, null, model.PlayerTank.LifeIndicatorBackground);
+                drawingContext.DrawGeometry(Metal, null, model.EnemyTank.LifeIndicatorBackground);
+
                 drawingContext.DrawGeometry(Brushes.DarkGray, null, model.PlayerTank.HpIndicator.Children[0]);
                 drawingContext.DrawGeometry(Brushes.DeepSkyBlue, null, model.PlayerTank.HpIndicator.Children[1]);
 
                 drawingContext.DrawGeometry(Brushes.DarkGray, null, model.EnemyTank.HpIndicator.Children[0]);
                 drawingContext.DrawGeometry(Brushes.Red, null, model.EnemyTank.HpIndicator.Children[1]);
 
-                drawingContext.DrawGeometry(Metal, null, model.PlayerTank.LifeIndicatorBackground);
-                drawingContext.DrawGeometry(Metal, null, model.EnemyTank.LifeIndicatorBackground);
                 //drawingContext.DrawGeometry(Brushes.DarkGray, null, model.PlayerTank.LifeIndicators.Children[3]);
                 for (int i = 0; i < model.PlayerTank.Lives; i++)
                 {
@@ -182,6 +196,7 @@ namespace Tank_Combat.Renderer
                 //drawingContext.DrawGeometry(RedPlayerLightIconBrush, null, model.EnemyTank.LifeIndicators.Children[1]);
                 //drawingContext.DrawGeometry(RedPlayerLightIconBrush, null, model.EnemyTank.LifeIndicators.Children[2]);
                 #endregion
+
                 #region Draw Tanks
                 drawingContext.PushTransform(new RotateTransform(model.PlayerTank.Angle-90, model.PlayerTank.CenterX, model.PlayerTank.CenterY));
                 drawingContext.DrawGeometry(FriendlyTankBrush, null, model.PlayerTank.Area);
@@ -213,8 +228,8 @@ namespace Tank_Combat.Renderer
                 }
                 #endregion
 
-                
 
+                #region Draw Reload timer
                 if (model.PlayerTank.Time.ElapsedMilliseconds>model.PlayerTank.ReloadTime)
                 {
                     drawingContext.DrawGeometry(Brushes.Green, new Pen(Brushes.Black, 1), model.PlayerTank.ReloadTimeOnScreen);
@@ -232,8 +247,7 @@ namespace Tank_Combat.Renderer
                 {
                     drawingContext.DrawGeometry(Brushes.Red, new Pen(Brushes.Black, 1), model.EnemyTank.ReloadTimeOnScreen);
                 }
-                
-                
+                #endregion
             }
         }
 
@@ -361,6 +375,14 @@ namespace Tank_Combat.Renderer
             get
             {
             return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "hedgehog.png"), UriKind.RelativeOrAbsolute)));
+            }
+        }
+        public Brush ProhibitedBrush
+        {
+            get
+            {
+                var thisBrush = new SolidColorBrush(Color.FromArgb(100, 255, 0, 0));
+                return thisBrush;
             }
         }
 
