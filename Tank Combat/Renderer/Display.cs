@@ -70,8 +70,8 @@ namespace Tank_Combat.Renderer
             }
             else
             {
-                mapBackground = "Obudai2.png";
-                mapFile = "map_obudai2.txt";
+                mapBackground = "Obudai.png";
+                mapFile = "map_obudai.txt";
             }
 
             string[] lines = File.ReadAllLines("Maps/" + mapFile);
